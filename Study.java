@@ -1,26 +1,18 @@
     public class Study{
       private double hourStudy;
-      private Course[] schedule;
       private double effectiveHours;
       private final static double MAXHOURS=2;
       
    	//Constructor
-       public Study(double hourStudied ,Course[] sched,double effective){
+       public Study(double hourStudied ){
          hourStudy=hoursStudied;
-         schedule=sched;
-         effectiveHours=effective;
+         effectiveHours=0;
       }
        public double getHoursStudy(){
          return hourStudy;
       }
        public void setHoursStudy(double hourStudied){
          hourStudy=hourStudied;
-      }
-       public Course[] getSchedule(){
-         return schedule;
-      }
-       public void setSchedule(Course[] newSched){
-         schedule=newSched;
       }
        public double getEffectiveHours(){
          return effectiveHours;
