@@ -2,7 +2,7 @@
       private double hourStudy;
       private Course[] schedule;
       private double effectiveHours;
-      private final static double MAXHOURS;
+      private final static double MAXHOURS=2;
       
    	//Constructor
        public Study(double hourStudied ,Course[] sched,double effective){
@@ -41,13 +41,13 @@
             }
             else{
                effectiveHours+=MAXHOURS;
-               effectiveCalculator(hour-MAXHOURS,effectiveness*0.9,false);
+               effectiveCalculator(hour-MAXHOURS,effectiveness*0.9,false,hourDecrease);
             }
          }
          //Recursion part of code that decreases effectiveness and adds effective hours
          else if(hour>0){
-            effectiveHours+=hour*effectiveness;
-            effectiveCalculator(hour-hourDecrease,effectiveness*0.9,false,hourDecrease+1);
+            effectiveHours+=hourDecrease*effectiveness;
+            effectiveCalculator(hour-hourDecrease,effectiveness*0.9,false,hourDecrease+2);
           
          }
       }
