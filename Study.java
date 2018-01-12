@@ -20,9 +20,7 @@
        public void setEffectiveHours(double effective){
          effectiveHours=effective;
       }
-       public void resetInfo(){
-         effectiveHours=0;
-      }
+      
       
    	//recursive method to calculate effective hours
        public void effectiveCalculator(double hour,double effectiveness,boolean firstTime,double hourDecrease){
