@@ -1,3 +1,5 @@
+   import java.io.*;  
+	
     public class Type{
       private Stats[] stats;
       private String[] names;
@@ -24,14 +26,14 @@
       
          try{
             BufferedReader in=new BufferedReader(new FileReader(text));
-            stats=new Stats[in.readLine()];
+            stats=new Stats[Integer.parseInt(in.readLine())];
             names=new String[stats.length];
             id=new int[stats.length];
             //Reads in the names Id and Stats from a text file.
             for(int i=0;i<stats.length;i++){
                names[i]=in.readLine();
-               id[i]=in.readLine();
-               stats[i]=new Stats(in.readLine(),in.readLine(),in.readLine(),in.readLine(),in.readLine(),(int)(Math.random()*10)+1,in.readLine(),in.readLine());
+               id[i]=Integer.parseInt(in.readLine());
+               stats[i]=new Stats(Integer.parseInt(in.readLine()),Integer.parseInt(in.readLine()),Integer.parseInt(in.readLine()),Integer.parseInt(in.readLine()),Integer.parseInt(in.readLine()),(int)(Math.random()*10)+1,Integer.parseInt(in.readLine()),Integer.parseInt(in.readLine()));
             
             }
             in.close();
