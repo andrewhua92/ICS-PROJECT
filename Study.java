@@ -1,11 +1,11 @@
-    public class Study{
+public class Study{
       private double hourStudy;
       private double effectiveHours;
       private final static double MAXHOURS=2;
       
    	//Constructor
        public Study(double hourStudied ){
-         hourStudy=hoursStudied;
+         hourStudy=hourStudied;
          effectiveHours=0;
       }
        public double getHoursStudy(){
@@ -27,7 +27,7 @@
       //Adds in the max hours at 100% efficiency
          if(firstTime==true){    
             if (hourStudy<=MAXHOURS){
-               effectiveHour+=hour;
+               effectiveHours+=hour;
             }
             else{
                effectiveHours+=MAXHOURS;
@@ -41,4 +41,4 @@
           
          }
       }
-   }
+	}
