@@ -44,7 +44,7 @@ public class Stats {
 		return linguisticIntelligence;
 	}
 	
-	public void setLingusticIntelligence(int linInt) {
+	public void setLinguisticIntelligence(int linInt) {
 		linguisticIntelligence = linInt;
 	}
 	
