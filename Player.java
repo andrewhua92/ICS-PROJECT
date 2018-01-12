@@ -10,8 +10,8 @@ import java.util.*;
       private String gender;
       private String name;
       private boolean sufficientSleep;
-      private Course[] schedule;
-      private Study allocatedStudy;
+      Course[] schedule;
+      Study allocatedStudy;
       private int month;
    
    	//Constructor
