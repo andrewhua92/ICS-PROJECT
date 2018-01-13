@@ -181,14 +181,14 @@ public class Course
       {
          for (int i = 0; i < choices[0].length;i++)
          {
-            System.out.println((i+1)+ " " + choice[0][i]);
+            System.out.println((i+1)+ " " + choices[0][i]);
          }
       }
       else
       {
          for (int i =0 ; i < choices[1].length;i++)
          {
-            System.out.println((i+1)+" " + choice[1][i]);
+            System.out.println((i+1)+" " + choices[1][i]);
          }
       }
        do
@@ -210,11 +210,11 @@ public class Course
       // Assigns this course object a name
       if (gradeLevel == 9 || gradeLevel == 10)
       {
-         subject=choice[0][course];
+         subject=choices[0][course];
       }   
       else
       {
-         subject=choice[1][course];
+         subject=choices[1][course];
       }
       
    }
