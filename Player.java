@@ -216,7 +216,7 @@ import java.util.*;
             stats.setHappiness((int)(stats.getHappiness()+time/3));
          }
       }
-		
+	// Performs a test based on which course is chosen
 		public void doTest(int courseNum)
 		{
 			schedule[courseNum].list[schedule[courseNum].createEval(this)].calculateMark();
