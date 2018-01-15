@@ -257,6 +257,7 @@
          }
       }
    
+       // Creates an evaluation to be generated and to be calculated for a mark
        public int createEval(Player plyr)
       {
          if (boostStat.equals("logicalIntelligence"))
