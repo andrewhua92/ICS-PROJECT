@@ -135,3 +135,22 @@ You end up sleeping very late and wake up the next day with a crazy headache.
 0
 7
 2
+1
+Mcdonalds
+7
+4
+3
+You suddenly feel the need to eat. There is a McDonalds across the street. You enter the McDonalds and the cashier says,"What would you like?"
+2
+"Big Mac"
+The cashier says, "Your total is $6.82"
+"McChicken"
+The cashier says, "Your total is $6.76"
+You open your wallet and pay the cashier.
+2
+Eat the sandwich now.
+You open the bag and you smell the aroma of the fries. You take a bite of the sandwich and you think to yourself, why do I keep eating this, I'm trying to lose weight.
+Eat the sandwich later.
+You put the meal into your bag but the smell is too tempting so you take out a fry and eat it.
+While chewing you think to yourself, is working here that bad?
+0
