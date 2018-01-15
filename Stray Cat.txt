@@ -1,0 +1,38 @@
+1
+StrayCat
+4
+1
+6
+You casually look on the road and you see something furry. You don't pay much attention to it until it suddendly moves. You realize it is a cat.
+2
+"It's not my problem why do I care about that thing?"
+The kitten looks at you with his soft gaze and you seem to get mind controlled to help him.
+"He's too cute, I have have to help him right away!"
+You quickly run to the kitten and take him into your arms.
+He meows and seems to tell you to pet him. Do you take him home with you or do you let him go safetly on the sidewalk.
+2
+"Take him home and care for him forever and ever!"
+He meows happily and smiles at you.
+"Leave him on the sidewalk"
+He meows again and your decision making skills become clouded and you take him home anyways.
+Together you go back him with your newly found kitten. You find him a cardboard box and he falls asleep instantly with a smile.
+0
+5
+3
+
+1
+VideoGame
+3
+5
+3
+It is the weekend and after completing all your work, you decide to relax. You open up the computer and open up your favourite video game. Do you play 
+2
+Tetris
+The blocks start falling and you remember the how you once held the world record for most points.
+Bejeweled®
+The jewels come down from the sky and you remember the how you once held the world record for most points.
+After an hour of playing should you play one more?
+2
+"Hell yes!"
+You keep on playing.
+"No, it is bad for my eyes."
