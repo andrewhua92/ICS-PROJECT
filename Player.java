@@ -5,12 +5,12 @@ import java.util.*;
    	//Fields
       Scanner input = new Scanner(System.in);
       private int grade;
-      private Stats stats;
+      Stats stats;
       private Type type;
       private String gender;
       private String name;
       private boolean sufficientSleep;
-      Course[] schedule;
+      private Course[] schedule;
       Study allocatedStudy;
       private int month;
    
@@ -216,4 +216,9 @@ import java.util.*;
             stats.setHappiness((int)(stats.getHappiness()+time/3));
          }
       }
+		
+		public void doTest(int courseNum)
+		{
+			schedule[courseNum].list[schedule[courseNum].createEval(this)].calculateMark();
+		}
    }
