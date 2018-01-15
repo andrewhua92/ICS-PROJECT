@@ -32,7 +32,7 @@ public class Display {
 		System.out.println("Spend your time wisely!");
 		//affects course selection and possible events
 		character.setGrade(9);
-		character.schedule.chooseCourse();
+		this.chooseCourses();
 		//counts time for 40 months
 		while(this.getMonth()<=40)
 		{
@@ -40,35 +40,35 @@ public class Display {
 			//course selection after every term
 			if(counter == 6) {
 				System.out.println("First term already gone in a flash! Here's to seven more!");
-				character.schedule.chooseCourse();
+				this.chooseCourses();
 			}
 			if (counter == 16) {
 				System.out.println("You're getting the hang of this, almost at the halfway mark!");
-				character.schedule.chooseCourse();
+				this.chooseCourses();
 			}
 			if (counter == 26) {
 				System.out.println("You're pretty much an expert at this point, finish strong!");
-				character.schedule.chooseCourse();
+				this.chooseCourses();
 			}
 			if(counter == 36) {
 				System.out.println("Last semester! Make it count, the end is near.");
-				character.schedule.chooseCourse();
+				this.chooseCourses();
 			}
 			//graduates to next grade, new events and classes to take
 			if(counter == 11) {
 				character.setGrade(10);
 				System.out.println("First year already gone by! Welcome to your sophmore year.");
-				character.schedule.chooseCourse();
+				this.chooseCourses();
 			}
 			if(counter == 21) {
 				character.setGrade(11);
 				System.out.println("Already Grade 11! Enjoy it while you can, the world is still your oyster.");
-				character.schedule.chooseCourse();
+				this.chooseCourses();
 			}
 			if(counter == 31){
 				character.setGrade(12);
 				System.out.println("Final year! Just ten short months before you enter the real world.");
-				character.schedule.chooseCourse();
+				this.chooseCourses();
 			}
 			//summarizes what happened the last month
 			if(counter>1) {
@@ -96,6 +96,9 @@ public class Display {
 			//initializes event per month
 			events.rollEvent(counter);
 			//increases month value after all course work and events are completed
+			for(int i = 0 ; i<4 ; i++) {
+				character.doTest(i);
+			}
 			this.addMonth();
 			//Gives the player a pause
 			System.out.println("The end of another month... (Press enter to continue)");
@@ -153,6 +156,12 @@ public class Display {
 			}
 		}
 		
+	}
+	
+	public void chooseCourses(){
+		for (int i = 0 ; i <4 ; i++) {
+			character.schedule[i].chooseCourse();
+		}
 	}
 	//initialized once sufficient time has passed
 	
