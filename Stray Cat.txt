@@ -1,8 +1,8 @@
-1
+2
 StrayCat
 4
 1
-6
+3
 You casually look on the road and you see something furry. You don't pay much attention to it until it suddendly moves. You realize it is a cat.
 2
 "It's not my problem why do I care about that thing?"
@@ -19,12 +19,11 @@ Together you go back him with your newly found kitten. You find him a cardboard 
 0
 5
 3
-
-1
+2
 VideoGame
 3
 5
-3
+7
 It is the weekend and after completing all your work, you decide to relax. You open up the computer and open up your favourite video game. Do you play 
 2
 Tetris
@@ -34,5 +33,53 @@ The jewels come down from the sky and you remember the how you once held the wor
 After an hour of playing should you play one more?
 2
 "Hell yes!"
-You keep on playing.
+You go back to the computer and open up the game again.
 "No, it is bad for my eyes."
+You think how fun the game is and how playing one more hour won't be that bad and re-open the game.
+You play for another hour, should you play another?
+2
+"Yes!"
+You go back to the computer and open up the game again.
+"No, I should go outside."
+You think how fun the game is and how playing one more hour won't be that bad and re-open the game.
+You play for another hour, should you play another?
+2
+"Yes!"
+You go back to the computer and open up the game again.
+"No, I should do some extra curricular activities."
+You think how fun the game is and how playing one more hour won't be that bad and re-open the game.
+You play for another hour, should you play another?
+2
+"Yes!"
+You go back to the computer and open up the game again.
+"No, I should go excercise."
+You think how fun the game is and how playing one more hour won't be that bad and re-open the game.
+You play for another hour, should you play another?
+1
+"Nah"
+You turn of the computer to rest your eyes but as you check the clock, 4 hours have already passed.
+It is at this moment you realise how waste of time this is.
+0
+3
+3
+1
+GettingSick
+8
+2
+3
+Your throat feels sore, your nose is drippy. You think you are sick. What should you do?
+2
+Continue studying for your next test.
+You kind of feel drowsy and want to sleep.
+Take some medicine and sleep.
+You take some Tylenol and sleep
+You fall asleep slowly but begin to burn up. Should you take a hot shower or cold shower.
+2
+Hot shower.
+You feel a lot better.
+Cold shower.
+You feel cooler but your nose begins to run again.
+You get back to bed and after a long, long, long sleep you wake up and feel healty agian. You go back to reading your textbook.
+0
+8
+3
