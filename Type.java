@@ -22,10 +22,10 @@
        public void setId(int[] ids){
          id=ids;
       }
-       public Type(String text){
+       public Type(){
       
          try{
-            BufferedReader in=new BufferedReader(new FileReader(text));
+            BufferedReader in=new BufferedReader(new FileReader("Type.txt"));
             stats=new Stats[Integer.parseInt(in.readLine())];
             names=new String[stats.length];
             id=new int[stats.length];
@@ -34,13 +34,16 @@
                names[i]=in.readLine();
                id[i]=Integer.parseInt(in.readLine());
                stats[i]=new Stats(Integer.parseInt(in.readLine()),Integer.parseInt(in.readLine()),Integer.parseInt(in.readLine()),Integer.parseInt(in.readLine()),Integer.parseInt(in.readLine()),(int)(Math.random()*10)+1,Integer.parseInt(in.readLine()),Integer.parseInt(in.readLine()));
-            
             }
             in.close();
          }
-         
              catch(IOException iox){
-            
+               System.out.println("Error in reading file.");  
             }
+            
       }
-   }
+      
+   	public Stats choose(int identity) {
+   	return stats[identity];
+   	}
+   	}
