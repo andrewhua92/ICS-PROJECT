@@ -4,14 +4,15 @@ public class Display {
 	Scanner sc = new Scanner(System.in);
 	String input;
 	private Player character;
-	private eventRunner events;
+	private EventRunner events;
 	final int COURSES = 4;
 	int month = 0;
+	private Type type = new Type();
 	//initialize constructor
-	public Display (Player chara, eventRunner events) {
+/*	public Display (Player chara, EventRunner events) {
 		character = chara;
 		this.events = events;
-	}
+	}*/
 	
 	//accessor and mutator for months
 	public int getMonth(){
@@ -72,7 +73,7 @@ public class Display {
 			}
 			//summarizes what happened the last month
 			if(counter>1) {
-				happiness = character.getHappiness();
+				int happiness = character.stats.getHappiness();
 				//Different response depending on their happiness level
 				if(happiness>8) {
 					System.out.println("You're happiness is through the roof! Here are the rest of yours stats.");
@@ -80,14 +81,14 @@ public class Display {
 					System.out.println("Life is fine, but it could also be better! Here are the results of last month.");
 				}
 				else {
-					System.out.println("You've done enough, but at what cost? You've been depressed all month. Here are your stats.")
+					System.out.println("You've done enough, but at what cost? You've been depressed all month. Here are your stats.");
 				}
 				//prints out all stats for player to see that month
 				System.out.print(character.stats);
 				for (int i = 0; i< COURSES ; i++)
 				{
-					System.out.printf("Marks this month for %s: %f%n", character.schedule[i].getSubject(), character.schedule[i].getMark());
-					System.out.printf("Mark for course overall:%f%n", character.schedule[i].getTotalMark());
+					System.out.printf("Marks this month for %s: %f%n", character.schedule[i].getSubject(), character.schedule[i].list[counter%5].getMark());
+					System.out.printf("Mark for course overall:%f%n", character.schedule[i].getCurrMark());
 				}
 			}
 			//player chooses how to allocate time
@@ -123,37 +124,16 @@ public class Display {
 		
 		//selects Character type
 		while (!valid) {
+			int num;
 			System.out.println("What character class do you want to be? Input a number for each result.");
 			System.out.println("Charmer: 1");
 			System.out.println("Artist: 2");
 			System.out.println("Jock: 3");
 			System.out.println("Unspecialized: 4");
 			System.out.println("Nerd: 5");
-			input = sc.nextLine();
+			num = sc.nextInt();
 					 
-			switch (input) {
-			case 1:
-				character.Type(Charmer);
-				valid = true;
-				break;
-			case 2:
-				character.Type(Artist);
-				valid = true;
-				break;
-			case 3:
-				character.Type(Jock);
-				valid = true;
-				break;
-			case 4:
-				character.Type(Unspecialized);
-				valid = true;
-				break;
-			case 5:
-				character.Type(Nerd);
-				valid = true;
-			default:
-				System.out.print("Invalid input, please try again");
-			}
+			type.choose(num);
 		}
 		
 	}
@@ -169,5 +149,5 @@ public class Display {
 	public void startEnding(){
 		
 	}
-	
+
 }
