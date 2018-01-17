@@ -18,7 +18,7 @@ public class Course
    private String boostStat;
 
    String[] selection = new String[NUM_STATS];
-   String[] fileSelect ={"logicalIntelligenceCourses.txt","spatialIntelligenceCourses.txt","linguisticIntelligenceCourses.txt","expressionCharsimaCourses.txt","socialCharismaCourses.txt","strengthCourses.txt"};
+   String[] fileSelect ={"logicalIntelligenceCourses.txt","spatialIntelligenceCourses.txt","linguisticIntelligenceCourses.txt","expressionCharismaCourses.txt","socialCharismaCourses.txt","strengthCourses.txt"};
    String[][] choices = new String[LEVELS][];
 
 // Constructors
@@ -152,7 +152,7 @@ public void setCourseLength(int length)
       }while(!(choose >= 1 && choose <= 6));
    
    // Calls the method to allow this specific object to have a stat identity
-      boostStatSelect(choose-1);
+      boostStatSelect(choose);
    
    // Based on user-selected stat, will read in courses for that specific stat
       int jr = 0;

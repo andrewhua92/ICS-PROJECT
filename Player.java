@@ -1,4 +1,4 @@
-import java.util.*;
+   import java.util.*;
 
     public class Player
    {
@@ -165,46 +165,46 @@ import java.util.*;
    	//Gets time for study and converts it into stats
        public void study(double time)
       {
-			double hours;
-      	double timeLeft=time;
+         double hours;
+         double timeLeft=time;
          for(int i=0; i<schedule.length; i++)
          {
             System.out.println("How much time do you want to spend with each course?");
-            System.out.println(schedule[i].getSubject()+": ");
-         	hours=input.nextDouble();
-				 while(!timeChecker(hours,timeLeft))
+            System.out.print(schedule[i].getSubject()+": ");
+            hours=input.nextDouble();
+            while(!timeChecker(hours,timeLeft))
             {
                System.out.println("Re-enter a number for "+schedule[i].getSubject());
                hours=input.nextDouble();
             }
-				timeLeft-=hours;
-				allocatedStudy=new Study(hours);
-				allocatedStudy.effectiveCalculator(allocatedStudy.getHoursStudy(),allocatedStudy.getEffectiveHours(), true, 1);
-				
-				String statType = schedule[i].getBoostStat();
-				
-				switch(statType)
-				{
-					case"linguisticIntelligence":
-               stats.setLinguisticIntelligence((int)(stats.getLinguisticIntelligence()+allocatedStudy.getEffectiveHours()));
-               break;
+            timeLeft-=hours;
+            allocatedStudy = new Study(hours);
+            allocatedStudy.effectiveCalculator(allocatedStudy.getHoursStudy(),1, true, 1);
+         	
+            String statType = schedule[i].getBoostStat();
+         	
+            switch(statType)
+            {
+               case"linguisticIntelligence":
+                  stats.setLinguisticIntelligence((int)(stats.getLinguisticIntelligence()+allocatedStudy.getEffectiveHours()));
+                  break;
                case"spatialIntelligence":
-					stats.setSpatialIntelligence((int)(stats.getSpatialIntelligence()+allocatedStudy.getEffectiveHours()));
-               break;
+                  stats.setSpatialIntelligence((int)(stats.getSpatialIntelligence()+allocatedStudy.getEffectiveHours()));
+                  break;
                case"logicalIntelligence":
-               stats.setLogicalIntelligence((int)(stats.getLogicalIntelligence()+allocatedStudy.getEffectiveHours()));
-               break;
+                  stats.setLogicalIntelligence((int)(stats.getLogicalIntelligence()+allocatedStudy.getEffectiveHours()));
+                  break;
                case"expressionCharisma":
-               stats.setExpressionCharisma((int)(stats.getExpressionCharisma()+allocatedStudy.getEffectiveHours()));
-               break;
+                  stats.setExpressionCharisma((int)(stats.getExpressionCharisma()+allocatedStudy.getEffectiveHours()));
+                  break;
                case"socialCharisma":
-               stats.setSocialCharisma((int)(stats.getSocialCharisma()+allocatedStudy.getEffectiveHours()));
-               break;
+                  stats.setSocialCharisma((int)(stats.getSocialCharisma()+allocatedStudy.getEffectiveHours()));
+                  break;
                case"strength":
-               stats.setStrength((int)(stats.getStrength()+allocatedStudy.getEffectiveHours()));
-               break;
+                  stats.setStrength((int)(stats.getStrength()+allocatedStudy.getEffectiveHours()));
+                  break;
                default: System.out.println("Error");
-				}
+            }
          }
       }  
       //Gets time for social and converts it into stats
@@ -216,15 +216,15 @@ import java.util.*;
             stats.setHappiness((int)(stats.getHappiness()+time/3));
          }
       }
-		
+   	
       // Method used to simulate a 'test' based on stats of player at current month
-		public void doTest(int courseNum)
-		{
-			schedule[courseNum].list[schedule[courseNum].createEval(this)].calculateMark();
-		}
+       public void doTest(int courseNum)
+      {
+         schedule[courseNum].list[schedule[courseNum].createEval(this)].calculateMark();
+      }
       
       // Method that initializes the courses and selects the courses
-      public void courseSelection()
+       public void courseSelection()
       {
          for (int i = 0; i < COURSES; i++)
          {
