@@ -10,19 +10,19 @@ import java.util.*;
       private String gender;
       private String name;
       private boolean sufficientSleep;
-      Course[] schedule;
       Study allocatedStudy;
       private int month;
+      private final int COURSES = 4;
+      Course[] schedule = new Course[COURSES];
    
    	//Constructor
-       public Player(Stats stats, Type type, String gender, String name, boolean sufficientSleep, Course[] schedule, int month)
+       public Player(Stats stats, Type type, String gender, String name, boolean sufficientSleep, int month)
       {
          this.stats=stats;
          this.type=type;
          this.gender=gender;
          this.name=name;
          this.sufficientSleep=sufficientSleep;
-         this.schedule=schedule;
          this.month=month;
       }
    	
@@ -117,7 +117,7 @@ import java.util.*;
          double time;
          double timeLeft=12.0;
          boolean badTime;
-         System.out.println("How would you like to spend your time after school from 3pm? (12 hours)");
+         System.out.println("How would you like to spend your time after school from 3pm? (12 hours) ");
          System.out.println("How much time do you want to spend socializing/having fun?");
          time=input.nextDouble();
          try
@@ -216,9 +216,20 @@ import java.util.*;
             stats.setHappiness((int)(stats.getHappiness()+time/3));
          }
       }
-	// Performs a test based on which course is chosen
+		
+      // Method used to simulate a 'test' based on stats of player at current month
 		public void doTest(int courseNum)
 		{
 			schedule[courseNum].list[schedule[courseNum].createEval(this)].calculateMark();
 		}
+      
+      // Method that initializes the courses and selects the courses
+      public void courseSelection()
+      {
+         for (int i = 0; i < COURSES; i++)
+         {
+            schedule[i] = new Course(grade);
+            schedule[i].chooseCourse();
+         }
+      }
    }
