@@ -76,6 +76,7 @@ Meeting Hollywood Director
 9
 3
 You're walking around downtown as you see a man with many bodyguards around him.
+2
 You approach him to see who he is.
 The man reveals that he is a director.
 You decide to conitnue on with your original plans.
@@ -90,8 +91,8 @@ The director decides to cast you as a side character in his latest movie.
 0
 4
 5
-4
-32
+34
+2
 Quebec Trip
 1
 7
@@ -338,6 +339,7 @@ Together you go back him with your newly found kitten. You find him a cardboard 
 0
 5
 3
+
 2
 VideoGame
 3
@@ -347,7 +349,7 @@ It is the weekend and after completing all your work, you decide to relax. You o
 2
 Tetris
 The blocks start falling and you remember the how you once held the world record for most points.
-Bejeweled®
+BejeweledÂ®
 The jewels come down from the sky and you remember the how you once held the world record for most points.
 After an hour of playing should you play one more?
 2
@@ -381,6 +383,7 @@ It is at this moment you realise how waste of time this is.
 0
 3
 3
+
 1
 Getting Sick
 8
@@ -502,11 +505,6 @@ As you leave, you contemplate life and what it means to you. People can easily l
 0
 6
 -2
-
-
-
-
-
 
 
 
