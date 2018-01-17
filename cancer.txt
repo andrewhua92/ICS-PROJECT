@@ -1,0 +1,27 @@
+2
+Cancer
+6
+9
+4
+You're just heading to your next class, when you feel your pocket vibrating. As you pull your phone out of your pocket, the display shows the the caller as your mother.
+2
+Ignore it.
+The phone rings again, and again, until you reluctantly pick it up, only to be informed that your father has cancer. Alarmed, you leave to the hospital as quickly as possible.
+Answer it.
+Your mother sobs as she informs the ailment of your father, as he has fallen ill to cancer. You fall to your knees, not knowing what to do, before leaving for the hospital.
+As you enter the hospital, you're lost and don't know what to do. 
+2
+Cry.
+As your tears stream down your face, you're completely lost. Your heart hurts, as you try to recover from this unbearable pain.
+Talk to your father.
+He looks at you, and he quietly rasps, "You've done well for yourself, don't hold yourself back because of me." You're at the brink of tears.
+2
+Talk to your father.
+You gather the courage to say to him, "I'll try to be happy for your sake, but I just don't know what to do." He has no response but a weak, warm smile.
+Run away.
+You have nothing else to do, but to wallow in your own dispair. You run for the door.
+0
+As you leave, you contemplate life and what it means to you. People can easily leave your life, as your being could disappear just as easily. You somberly leave the hospital with these thoughts in your mind.
+0
+6
+-2
