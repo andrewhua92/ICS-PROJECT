@@ -1,153 +1,295 @@
+import java.io.*;
 import java.util.*;
 
-public class Display {
-	Scanner sc = new Scanner(System.in);
-	String input;
-	private Player character;
-	private EventRunner events;
-	final int COURSES = 4;
-	int month = 0;
-	private Type type = new Type();
-	//initialize constructor
-/*	public Display (Player chara, EventRunner events) {
-		character = chara;
-		this.events = events;
-	}*/
-	
-	//accessor and mutator for months
-	public int getMonth(){
-		return month; 
-	}
-	
-	public void addMonth(){
-		month = month+1;
-	}
-	//calls all methods
-	public void startGame() {
-		System.out.println("Welcome to AYJ Simulator!");
-		this.characterCreation();
-		//gives exposition and tips for playing game
-		System.out.println("You will be playing through various situations, selecting courses at the beginning of every year.");
-		System.out.println("Every month, you will select how much sleep, entertainment, and studying you will do.");
-		System.out.println("You will also have a chance of encountering random events that can affect your stats.");
-		System.out.println("Spend your time wisely!");
-		//affects course selection and possible events
-		character.setGrade(9);
-		this.chooseCourses();
-		//counts time for 40 months
-		while(this.getMonth()<=40)
-		{
-			int counter = this.getMonth();
-			//course selection after every term
-			if(counter == 6) {
-				System.out.println("First term already gone in a flash! Here's to seven more!");
-				this.chooseCourses();
-			}
-			if (counter == 16) {
-				System.out.println("You're getting the hang of this, almost at the halfway mark!");
-				this.chooseCourses();
-			}
-			if (counter == 26) {
-				System.out.println("You're pretty much an expert at this point, finish strong!");
-				this.chooseCourses();
-			}
-			if(counter == 36) {
-				System.out.println("Last semester! Make it count, the end is near.");
-				this.chooseCourses();
-			}
-			//graduates to next grade, new events and classes to take
-			if(counter == 11) {
-				character.setGrade(10);
-				System.out.println("First year already gone by! Welcome to your sophmore year.");
-				this.chooseCourses();
-			}
-			if(counter == 21) {
-				character.setGrade(11);
-				System.out.println("Already Grade 11! Enjoy it while you can, the world is still your oyster.");
-				this.chooseCourses();
-			}
-			if(counter == 31){
-				character.setGrade(12);
-				System.out.println("Final year! Just ten short months before you enter the real world.");
-				this.chooseCourses();
-			}
-			//summarizes what happened the last month
-			if(counter>1) {
-				int happiness = character.stats.getHappiness();
-				//Different response depending on their happiness level
-				if(happiness>8) {
-					System.out.println("You're happiness is through the roof! Here are the rest of yours stats.");
-				}else if (happiness>4) {
-					System.out.println("Life is fine, but it could also be better! Here are the results of last month.");
-				}
-				else {
-					System.out.println("You've done enough, but at what cost? You've been depressed all month. Here are your stats.");
-				}
-				//prints out all stats for player to see that month
-				System.out.print(character.stats);
-				for (int i = 0; i< COURSES ; i++)
-				{
-					System.out.printf("Marks this month for %s: %f%n", character.schedule[i].getSubject(), character.schedule[i].list[counter%5].getMark());
-					System.out.printf("Mark for course overall:%f%n", character.schedule[i].getCurrMark());
-				}
-			}
-			//player chooses how to allocate time
-			System.out.print("Another month, another round of decisions. Pick how you would like to allocate your time this month.");
-			character.spendTime();
-			//initializes event per month
-			events.rollEvent(counter);
-			//increases month value after all course work and events are completed
-			for(int i = 0 ; i<4 ; i++) {
-				character.doTest(i);
-			}
-			this.addMonth();
-			//Gives the player a pause
-			System.out.println("The end of another month... (Press enter to continue)");
-			input=sc.nextLine();
-		}
-		//initialize ending after all 40 months have passed
-		this.startEnding();
-	}
-	
-	//called from start game, sets gender and character type
-	public void characterCreation()
-	{
-		String input;
-		boolean valid = false;
-		//Sets name and gender
-		System.out.println("What is your name?");
-		input = sc.nextLine();
-		character.setName(input);
-		System.out.print("What is your gender?");
-		input=sc.nextLine();
-		character.setGender(input);
-		
-		//selects Character type
-		while (!valid) {
-			int num;
-			System.out.println("What character class do you want to be? Input a number for each result.");
-			System.out.println("Charmer: 1");
-			System.out.println("Artist: 2");
-			System.out.println("Jock: 3");
-			System.out.println("Unspecialized: 4");
-			System.out.println("Nerd: 5");
-			num = sc.nextInt();
-					 
-			type.choose(num);
-		}
-		
-	}
-	
-	public void chooseCourses(){
-		for (int i = 0 ; i <4 ; i++) {
-			character.schedule[i].chooseCourse();
-		}
-	}
-	//initialized once sufficient time has passed
-	
-	//TODO: Finish ending
-	public void startEnding(){
-		
-	}
+public class Course
+{
+// Variables
+   private double currentMark = 100;
+   private int courseMissed = 0;
+//private int courseLength;
+   protected static int gradeLevel;
+   private String subject;
+   Evaluations[] list;
+   private int numEval; 
+   private double PASS = 50;
+   private final int NUM_STATS = 6;
+   private final int LEVELS = 2;
+   
+   private String boostStat;
 
+   String[] selection = new String[NUM_STATS];
+   String[] fileSelect ={"logicalIntelligenceCourses.txt","spatialIntelligenceCourses.txt","linguisticIntelligenceCourses.txt","expressionCharsimaCourses.txt","socialCharismaCourses.txt","strengthCourses.txt"};
+   String[][] choices = new String[LEVELS][];
+
+// Constructors
+   public Course (int grdLvl)
+   {
+      gradeLevel = grdLvl;
+      try
+      {
+         BufferedReader in = new BufferedReader (new FileReader("statsList.txt"));
+         for (int i =0; i < 6; i++)
+         {
+            selection[i] = in.readLine();
+         }
+         in.close();
+      }
+      catch(IOException iox)
+      {
+         System.out.println("Error in reading file.");
+      }
+   }
+
+	// Accesors and mutators
+   public double getCurrMark()
+   {
+      return currentMark;
+   }
+
+   public void setCurrMark(double mark)
+   {
+      currentMark = mark;
+   }
+
+   public int getCourseMissed()
+   {
+      return courseMissed;
+   }
+
+   public void setCourseMissed(int num)
+   {
+      courseMissed = num;
+   }
+
+/*
+public int getCourseLength()
+{
+   return courseLength;
+} 
+
+public void setCourseLength(int length)
+{
+   courseLength = length;
+} */
+
+   public int getGradeLevel()
+   {
+      return gradeLevel;
+   }
+
+   public void setGradeLevel(int grade)
+   {
+      gradeLevel = grade;
+   }
+
+   public String getSubject()
+   {
+      return subject;
+   }
+
+   public void setSubject(String sbj)
+   {
+      subject = sbj;
+   }
+
+   public int getNumEval()
+   {
+      return numEval;
+   }
+
+   public void setNumEval(int num)
+   {
+      numEval = num;
+   }
+	
+   public String getBoostStat()
+   {
+      return boostStat;
+   }
+	
+   public void setBoostStat(String stat)
+   {
+      boostStat = stat;
+   }
+
+	// Methiod to check if this player is passing course
+   public boolean pass ()
+   {
+      if (currentMark >= PASS)
+      {
+         return true;
+      }	
+      return false;
+   }
+
+// Process to allow user to pick course
+   public void chooseCourse()
+   {
+      int choose = 0;
+      int course = 0;
+      Scanner sc = new Scanner(System.in);
+   
+   // Asks user to pick a class first based on stat
+      System.out.println("Please enter the number for the specific types of class for a stat:");
+      for (int i = 0; i < NUM_STATS; i++)
+      {
+         System.out.println((i+1)+ " " +selection[i]);
+      }
+      do
+      {
+         try
+         {
+            choose=sc.nextInt();
+         }
+         catch(InputMismatchException imx)
+         {
+            System.out.println("Wrong input. Try again");
+         }
+         catch(NumberFormatException nfe)
+         {
+            System.out.println("Wrong input. Try again");
+         }
+      }while(!(choose >= 1 && choose <= 6));
+   
+   // Calls the method to allow this specific object to have a stat identity
+      boostStatSelect(choose-1);
+   
+   // Based on user-selected stat, will read in courses for that specific stat
+      int jr = 0;
+      int sr = 0;
+      try
+      {
+         BufferedReader in = new BufferedReader(new FileReader(fileSelect[choose-1]));
+         
+         jr = Integer.parseInt(in.readLine());
+         choices[0] = new String[jr];
+         for (int i = 0; i <jr; i++)
+         {
+            choices[0][i] = in.readLine();
+         }
+         
+         sr = Integer.parseInt(in.readLine());
+         choices[1] = new String[sr];
+         for (int i = 0; i < sr; i++)
+         {
+            choices[1][i] = in.readLine();
+         }
+      }
+      catch(IOException iox)
+      {
+         System.out.println("Error in reading file.");
+      }
+   
+   // Asks user to select which course they would like to pick
+      System.out.println("Please enter a number for the specific course accordingly:");
+   
+      if (gradeLevel == 9 || gradeLevel == 10)
+      {
+         for (int i = 0; i < choices[0].length;i++)
+         {
+            System.out.println((i+1)+ " " + choices[0][i]);
+         }
+      }
+      else
+      {
+         for (int i = 0; i < choices[1].length;i++)
+         {
+            System.out.println((i+1)+" " + choices[1][i]);
+         }
+      }
+      do
+      {
+         try
+         {
+            course=sc.nextInt();
+         }
+         catch(InputMismatchException imx)
+         {
+            System.out.println("Wrong input. Try again");
+         }
+         catch(NumberFormatException nfe)
+         {
+            System.out.println("Wrong input. Try again");
+         }
+      }while(!(course >= 1 && course <= 6 && course <= sr && course <=jr));
+   
+   // Assigns this course object a name
+      if (gradeLevel == 9 || gradeLevel == 10)
+      {
+         subject=choices[0][course-1];
+      }   
+      else
+      {
+         subject=choices[1][course-1];
+      }
+   
+   }
+
+//Calculates the current mark
+   private void calcAverage()
+   {
+      double avg = 0;
+      for (int i =0 ; i < numEval; i++)
+      {
+         avg+= list[i].getMark();
+      }
+      avg = avg/numEval;
+      currentMark = avg;
+   }
+
+// Identifies this course with a specific stat 
+   private void boostStatSelect (int num)
+   {
+      switch(num)
+      {
+         case 1:
+            boostStat = "logicalIntelligence";
+            break;
+         case 2:
+            boostStat = "spatialIntelligence";
+            break;
+         case 3:
+            boostStat = "linguisticIntelligence";
+            break;
+         case 4:
+            boostStat = "expressionCharisma";
+            break;
+         case 5:
+            boostStat = "socialCharisma";
+            break;
+         case 6:
+            boostStat = "strength";
+            break;
+      }
+   }
+
+   public int createEval(Player plyr)
+   {
+      if (boostStat.equals("logicalIntelligence"))
+      {
+         list[numEval] = new LogicalIntelligenceEval((subject + " Test " + (numEval+1)),plyr);
+         numEval++;
+      }	
+      else if (boostStat.equals("spatialIntelligence"))
+      {
+         list[numEval] = new SpatialIntelligenceEval((subject+ " Test " + (numEval+1)), plyr);
+      }
+      else if (boostStat.equals("linguisticIntelligence"))
+      {
+         list[numEval] = new LinguisticIntelligenceEval((subject+ " Test " + (numEval+1)), plyr);
+      }
+      else if (boostStat.equals("expressionCharisma"))
+      {
+         list[numEval] = new ExpressionCharismaEval((subject+ " Test " + (numEval+1)), plyr);
+      }
+      else if (boostStat.equals("socialCharisma"))
+      {
+         list[numEval] = new SocialCharismaEval((subject+ " Test " + (numEval+1)), plyr);
+      }
+      else if (boostStat.equals("strength"))
+      {
+         list[numEval] = new StrengthEval((subject+ " Test " + (numEval+1)), plyr);
+      }
+      return numEval;
+   }
 }
