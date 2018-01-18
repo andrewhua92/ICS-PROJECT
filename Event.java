@@ -60,7 +60,7 @@ abstract class Event{
 	
 	private boolean makeDecision(int choiceMade, int phaseNum){
 		if (choiceMade >= 1 && choiceMade <= ePhases[phaseNum].getNumChoices()){
-			 ePhases[phaseNum + 1].appendText(choiceMade);
+			 ePhases[phaseNum + 1].appendText(ePhases[phaseNum].getChoiceChangeToStory(choiceMade));
 			 return true;
 		} else if (choiceMade == 0){
 			return true;
