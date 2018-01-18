@@ -1,7 +1,7 @@
 2
 Bully
 6
-3
+7
 4
 You are walking back to class from lunch, as you approach the class a bully stands in your way.
 2
@@ -73,7 +73,7 @@ The scouts have witnessed your abillity, your chances of going pro have increase
 3
 Meeting Hollywood Director
 6
-9
+8
 3
 You're walking around downtown as you see a man with many bodyguards around him.
 2
@@ -299,7 +299,7 @@ Your mom comes in and stops you before you can end your life...
 2
 Meteor Crash
 6
-8
+4
 3
 You're walking home from school as you see a meteor fly down and land in your neighbourhood.
 2
