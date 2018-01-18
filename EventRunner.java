@@ -220,7 +220,9 @@ public class EventRunner{
 	}
 	
 	public int getAStat(int statType){
-		switch (statType){ 				
+		switch (statType){ 
+			case 0: 
+				return 0;				
 			case 1:
 				return player.getStats().getLinguisticIntelligence();
 			case 2: 
@@ -242,7 +244,9 @@ public class EventRunner{
 	}
 	
 	public void setAStat(int statType, int addBy){
-		switch (statType){ 				
+		switch (statType){ 
+			case 0: 
+				break;				
 			case 1:
 				player.getStats().setLinguisticIntelligence(getAStat(statType) + addBy);
 			 	break;
@@ -270,3 +274,4 @@ public class EventRunner{
 		}
 	}
 }
+
