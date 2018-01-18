@@ -1,5 +1,3 @@
-package final_Project;
-
 import java.util.*; 
 abstract class Event{
 	private String id;
@@ -53,9 +51,10 @@ abstract class Event{
 			System.out.println(ePhases[i]);
 			playerChoice = sc.nextInt(); 
 			while (!(makeDecision(playerChoice, i))){
-				System.out.println("Invalid decision. Please enter a valid number.");
+				System.out.println("Invalid decision. Please enter a valid decision number.");
 				playerChoice = sc.nextInt();
 			}
+			makeDecision(playerChoice, i);
 		}
 	}
 	
@@ -69,5 +68,5 @@ abstract class Event{
 			return false;
 		}
 	}
-	
 }
+
