@@ -1,0 +1,43 @@
+College
+7
+7
+1
+10
+5
+10
+Highschools over and your future has been decided. You're going to college.
+You tryed your best, but you messed around a little too much to get in to college.
+You're going to miss all your friends that are going to university. You have decided to move on and start a new chapter in your life.
+
+Athlete
+8
+7
+8
+15
+5
+10
+Highschools over. You've won the national championship. Many scouts have seen your abillities.
+You have entered the draft for 2020. You're predicted to be next Michael Jordan.
+You've entered an organization and begun training for your future.
+
+Dropout
+8
+2
+0
+0
+0
+0
+You messed around for all four years of highschool. You didn't have the marks to succeed, so you dropped out.
+Your parents are annoyed at you and despise the fact that you were born, they disown you.
+Now homeless without a career you spend the rest of your days on the streets of toronto begging for money.
+
+Criminal
+7
+3
+1
+15
+8
+15
+You have always been a rebel, but now you've crossed the line. You hacked into your school system and changed your marks.
+Now expelled from your school you have decided to become a professional hacker. You join an arabic team that wants to take down trump.
+You live a life of danger always being chased down by the CIA. Your life has changed ever since the day you hacked the school.
