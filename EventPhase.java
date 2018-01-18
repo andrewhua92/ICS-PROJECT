@@ -1,5 +1,3 @@
-package final_Project;
-
 public class EventPhase {
 	private Choice [] EpChoices; 
 	private int numChoices;
@@ -23,8 +21,8 @@ public class EventPhase {
 		System.out.println();
 	}
 		
-	public void appendText(int choiceNum){
-		phaseText = EpChoices[choiceNum].getChangeToStory() + phaseText; 
+	public void appendText(String text){
+		phaseText = text + phaseText; 
 	}
 	
 	public int getNumChoices(){
@@ -33,6 +31,10 @@ public class EventPhase {
 	
 	public String getPhaseText(){
 		return phaseText;
+	}
+	
+	public String getChoiceChangeToStory(int choiceNum){
+		return choices[choiceNum];
 	}
 	
 	public String toString(){
@@ -44,3 +46,4 @@ public class EventPhase {
 		return s; 
 	}
 }
+
