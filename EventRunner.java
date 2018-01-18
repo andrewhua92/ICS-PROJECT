@@ -1,9 +1,8 @@
-package final_Project;
-
 import java.io.*;
 public class EventRunner{
 	private Player player; 
 	private Event [] events; 
+	private Ending [] endings; 
 	int eventNum;  
 	
 	/* Reference for ids of the stats
@@ -25,12 +24,12 @@ public class EventRunner{
 	 * 3 - Predetermined event (tracks time)
 	 */
 	 
-	public EventRunner(Player p, File eventFile){
+	public EventRunner(Player p, File eventFile, File endingsFile){
 		try {
 			player = p;
 			
-			BufferedReader in = new BufferedReader(new FileReader(eventFile)); 
-			
+			BufferedReader in = new BufferedReader(new FileReader(eventFile)); //reads in event information
+			BufferedReader in2 = new BufferedReader(new FileReader(endingsFile)); //reads in endings information 
 			int eventType; 
 			int numPhases; 
 			int numChoices; 
@@ -40,6 +39,29 @@ public class EventRunner{
 			int changeType; 
 			int changeAmount; 
 			
+			String title;
+			int numEndings; 
+			int luckReq, hapReq, stat1, req1, stat2, req2, numLinesOfText;
+			String text = ""; 
+			
+			String flush; //gets rid of empty lines in the file
+			 
+			numEndings = Integer.parseInt(in2.readLine()); 
+			for(int i = 0; i < numEndings; i++){
+				title = in2.readLine();
+				luckReq = Integer.parseInt(in2.readLine());
+				hapReq = Integer.parseInt(in2.readLine());
+				stat1 = Integer.parseInt(in2.readLine());
+				req1 = Integer.parseInt(in2.readLine());
+				stat2 = Integer.parseInt(in2.readLine());
+				req2 = Integer.parseInt(in2.readLine());
+
+				for (int j = 0; j < 3; j++){
+					text = in.readLine() + "\n";
+				}
+				flush = in.readLine();
+				endings[i] = new Ending (title, luckReq, hapReq, stat1, req1, stat2, req2, text);
+			}
 			
 			EventPhase [] phases;
 			String [] phaseText; //base text that makes up each phase
@@ -78,7 +100,7 @@ public class EventRunner{
 					int month = Integer.parseInt(in.readLine());
 					events [i] = new Predetermined(id, statReqType, statReq, changeType, changeAmount, month, phases);
 				}
-				String flush = in.readLine(); //gets rid of the empty space between events 
+				flush = in.readLine(); //gets rid of the empty space between events 
 			}
 		} catch (IOException e){
 		}
@@ -88,7 +110,7 @@ public class EventRunner{
 		player = p;
 	}
 	
-	private Event evaluateStats(int eventType, int month){
+	private Event evaluateStatsForEvents(int eventType, int month){
 		boolean foundEvent = false;
 		Event pE = events[0]; // Potential event 
 		for (int h = 0; h < 2; h++){
@@ -173,16 +195,28 @@ public class EventRunner{
 	}	
 	
 	public void rollEvent(int month){
+		//updatePlayer(p); //updates player stats for any possible adjustments since last playing period
 		Event e1, e2, e3;
-		e1 = evaluateStats(1, month); 
-		e2 = evaluateStats(2, month);
-		e3 = evaluateStats(3, month);
+		e1 = evaluateStatsForEvents(1, month); 
+		e2 = evaluateStatsForEvents(2, month);
+		e3 = evaluateStatsForEvents(3, month);
 		e1.play();
 		setAStat(e1.getChangeType(), e1.getChangeAmount()); 
 		e2.play();
 		setAStat(e2.getChangeType(), e2.getChangeAmount()); 
 		e3.play();
 		setAStat(e3.getChangeType(), e3.getChangeAmount()); 
+	}
+	
+	public void rollEnding(){
+		for (int i = 0; i < endings.length; i++){
+			if (getAStat(7) >= endings[i].getHapReq() && getAStat(6) >= endings[i].getLuckReq()){
+				if (getAStat(endings[i].getStat1()) >= endings[i].getStat1Req() && getAStat(endings[i].getStat2()) >= endings[i].getStat2Req()){
+					System.out.println("Ending: " + endings[i].getTitle());
+					System.out.println(endings[i].getText());
+				}
+			}
+		}
 	}
 	
 	public int getAStat(int statType){
