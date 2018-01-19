@@ -24,7 +24,7 @@ public class EventRunner{
 	 * 3 - Predetermined event (tracks time)
 	 */
 	 
-	public EventRunner(Player p, File eventFile, File endingsFile){
+	public EventRunner(Player p, String eventFile, String endingsFile){
 		try {
 			player = p;
 			
@@ -57,9 +57,10 @@ public class EventRunner{
 				req2 = Integer.parseInt(in2.readLine());
 
 				for (int j = 0; j < 3; j++){
-					text = in.readLine() + "\n";
+					text+= in2.readLine() + "\n";
 				}
-				flush = in.readLine();
+				flush = in2.readLine();
+				endings = new Ending[numEndings];
 				endings[i] = new Ending (title, luckReq, hapReq, stat1, req1, stat2, req2, text);
 			}
 			
@@ -71,10 +72,9 @@ public class EventRunner{
 			events = new Event[eventNum];
 			for (int i = 0; i < eventNum; i++){
 				eventType = Integer.parseInt(in.readLine()); //reads in type of event
-				id = in.readLine(); 
+				id = in.readLine();                          //reads in the ID for the event
 				statReqType = Integer.parseInt(in.readLine()); //type of stat required
 				statReq = Integer.parseInt(in.readLine()); //minimum stat number that needs to be met
-			
 				numPhases = Integer.parseInt(in.readLine()); //reads in number of phases in an event		
 				phases = new EventPhase [numPhases]; //creates array of phases
 				phaseText = new String [numPhases];
@@ -103,6 +103,7 @@ public class EventRunner{
 				flush = in.readLine(); //gets rid of the empty space between events 
 			}
 		} catch (IOException e){
+         System.out.println("Error in reading file.");
 		}
 	}
 	
@@ -177,8 +178,8 @@ public class EventRunner{
 						return pE; 
 					}
 				} else if (eventType == 3){
-					if (pE instanceof Random && !pE.getOccured()){
-						Predetermined temp = (Predetermined) pE; 
+					if (pE instanceof Predetermined && !pE.getOccured()){
+						Predetermined temp = (Predetermined)pE; 
 						if (temp.getMonthReq() == month){
 							return pE; 
 						}
@@ -186,26 +187,19 @@ public class EventRunner{
 				} else {
 					return null;
 				}
-			
-			} // end of for loop
-			eventType = 2; // if an event of type 1 or 3 was needed but all have occured, 
-			// sets the search parameter to type 2 which are the recyclable events
+			eventType = 2; // if an event of type 1 or 3 was needed but all have occured,
+         // sets the search parameter to type 2 which are the recyclable events
+			} // end of for loop			
 		}
 		return null;
 	}	
 	
 	public void rollEvent(int month){
 		//updatePlayer(p); //updates player stats for any possible adjustments since last playing period
-		Event e1, e2, e3;
-		e1 = evaluateStatsForEvents(1, month); 
-		e2 = evaluateStatsForEvents(2, month);
-		e3 = evaluateStatsForEvents(3, month);
-		e1.play();
-		setAStat(e1.getChangeType(), e1.getChangeAmount()); 
-		e2.play();
-		setAStat(e2.getChangeType(), e2.getChangeAmount()); 
-		e3.play();
-		setAStat(e3.getChangeType(), e3.getChangeAmount()); 
+      Event e;
+		e = evaluateStatsForEvents((int)(Math.random()*3) + 1, month); 
+		e.play();
+		setAStat(e.getChangeType(), e.getChangeAmount());
 	}
 	
 	public void rollEnding(){

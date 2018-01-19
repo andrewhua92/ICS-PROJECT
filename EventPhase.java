@@ -21,12 +21,16 @@ public class EventPhase {
 		System.out.println();
 	}
 		
-	public void appendText(String text){
-		phaseText = text + phaseText; 
+	public void appendText(int choiceNum){
+		phaseText = EpChoices[choiceNum].getChangeToStory() + phaseText; 
 	}
 	
 	public int getNumChoices(){
 		return EpChoices.length; 
+	}
+	
+	public void appendText(String text){
+		phaseText = text + phaseText; 
 	}
 	
 	public String getPhaseText(){
@@ -34,7 +38,7 @@ public class EventPhase {
 	}
 	
 	public String getChoiceChangeToStory(int choiceNum){
-		return choices[choiceNum];
+		return EpChoices[choiceNum].getChangeToStory();
 	}
 	
 	public String toString(){
@@ -46,4 +50,3 @@ public class EventPhase {
 		return s; 
 	}
 }
-

@@ -9,8 +9,9 @@ public class Course
 //private int courseLength;
    protected static int gradeLevel;
    private String subject;
-   Evaluations[] list;
-   private int numEval; 
+   private int numEval = 0;
+   private final int MAX_EVAL = 5;
+   Evaluations[] list = new Evaluations[MAX_EVAL];
    private double PASS = 50;
    private final int NUM_STATS = 6;
    private final int LEVELS = 2;
@@ -125,6 +126,8 @@ public void setCourseLength(int length)
 // Process to allow user to pick course
    public void chooseCourse()
    {
+      String flush;
+      boolean valid = true;
       int choose = 0;
       int course = 0;
       Scanner sc = new Scanner(System.in);
@@ -135,19 +138,26 @@ public void setCourseLength(int length)
       {
          System.out.println((i+1)+ " " +selection[i]);
       }
+      // Input structure for user to input the type of class they want
       do
       {
          try
          {
             choose=sc.nextInt();
+            if (!(choose >=1 && choose <=6))
+            {
+               System.out.println("Wrong input. Please enter the number again.");  
+            }
          }
          catch(InputMismatchException imx)
          {
-            System.out.println("Wrong input. Try again");
+            System.out.println("Wrong input. Try again.");
+            flush = sc.next();
          }
          catch(NumberFormatException nfe)
          {
-            System.out.println("Wrong input. Try again");
+            System.out.println("Wrong input. Try again.");
+            flush = sc.next();
          }
       }while(!(choose >= 1 && choose <= 6));
    
@@ -197,19 +207,27 @@ public void setCourseLength(int length)
             System.out.println((i+1)+" " + choices[1][i]);
          }
       }
+      
+      //Input structure for specific course the user wants
       do
       {
          try
          {
             course=sc.nextInt();
+            if (!(course >=1 && course <= 6 && course <= sr && course <= jr))
+            {
+               System.out.println("Wrong input. Please enter the number again.");
+            }
          }
          catch(InputMismatchException imx)
          {
-            System.out.println("Wrong input. Try again");
+            System.out.println("Wrong input. Try again.");
+            flush = sc.next();
          }
          catch(NumberFormatException nfe)
          {
-            System.out.println("Wrong input. Try again");
+            System.out.println("Wrong input. Try again.");
+            flush = sc.next();
          }
       }while(!(course >= 1 && course <= 6 && course <= sr && course <=jr));
    
@@ -267,29 +285,34 @@ public void setCourseLength(int length)
    {
       if (boostStat.equals("logicalIntelligence"))
       {
-         list[numEval] = new LogicalIntelligenceEval((subject + " Test " + (numEval+1)),plyr);
          numEval++;
+         list[numEval-1] = new LogicalIntelligenceEval((subject + " Test " + (numEval)),plyr);
       }	
       else if (boostStat.equals("spatialIntelligence"))
       {
-         list[numEval] = new SpatialIntelligenceEval((subject+ " Test " + (numEval+1)), plyr);
+         numEval++;
+         list[numEval-1] = new SpatialIntelligenceEval((subject+ " Test " + (numEval)), plyr);
       }
       else if (boostStat.equals("linguisticIntelligence"))
       {
-         list[numEval] = new LinguisticIntelligenceEval((subject+ " Test " + (numEval+1)), plyr);
+         numEval++;
+         list[numEval-1] = new LinguisticIntelligenceEval((subject+ " Test " + (numEval)), plyr);
       }
       else if (boostStat.equals("expressionCharisma"))
       {
-         list[numEval] = new ExpressionCharismaEval((subject+ " Test " + (numEval+1)), plyr);
+         numEval++;
+         list[numEval-1] = new ExpressionCharismaEval((subject+ " Test " + (numEval)), plyr);
       }
       else if (boostStat.equals("socialCharisma"))
       {
-         list[numEval] = new SocialCharismaEval((subject+ " Test " + (numEval+1)), plyr);
+         numEval++;
+         list[numEval-1] = new SocialCharismaEval((subject+ " Test " + (numEval)), plyr);
       }
       else if (boostStat.equals("strength"))
       {
-         list[numEval] = new StrengthEval((subject+ " Test " + (numEval+1)), plyr);
+         numEval++;
+         list[numEval-1] = new StrengthEval((subject+ " Test " + (numEval)), plyr);
       }
-      return numEval;
+      return numEval-1;
    }
 }
