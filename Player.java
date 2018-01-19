@@ -9,7 +9,6 @@ public class Player {
    private String gender;
    private String name;
    private boolean sufficientSleep;
-   private boolean reset = true;
    private final int COURSES = 4;
    Course[] schedule = new Course[COURSES];
    Study allocatedStudy;
@@ -118,6 +117,7 @@ public class Player {
       double socialTime;
       double studyTime;
       double timeLeft = 12.0;
+		boolean reset = true;
       while (reset) {
          System.out.println("How would you like to spend your time after school from 3pm? (12 hours)");
       // makes sure under time limit
@@ -229,6 +229,7 @@ public class Player {
                   timeLeft = 12;
                   hours = null;
                   socialTime = 0;
+						
                }
                else
                {
@@ -310,8 +311,9 @@ public class Player {
    }
 
 	// Performs a test based on which course is chosen
-   public void doTest(int courseNum) {
-      schedule[courseNum].list[schedule[courseNum].createEval(this)].calculateMark();
+   public void doTest(int courseNum, int month) {
+      schedule[courseNum].createEval(this, (month%5));
+      schedule[courseNum].list[(month%5)].calculateMark();
    }
    
    // Method that initializes the courses and selects the courses

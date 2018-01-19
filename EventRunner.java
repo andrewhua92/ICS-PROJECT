@@ -92,7 +92,7 @@ public class EventRunner{
 						//first reads in the text of the choice
 						//right below it should be its change to the story if you pick it 
 					}
-					phases[j] = new EventPhase(choices); 
+					phases[j] = new EventPhase(phaseText[j], choices); 
 				}
 				changeType = Integer.parseInt(in.readLine());
 				changeAmount = Integer.parseInt(in.readLine());
@@ -104,6 +104,7 @@ public class EventRunner{
 				} else if (eventType == 3){ //keeps track of time
 					int month = Integer.parseInt(in.readLine());
 					events [i] = new Predetermined(id, statReqType, statReq, changeType, changeAmount, month, phases);
+					events[i].setMonth(month);
 				}
 				flush = in.readLine(); //gets rid of the empty space between events 
 			}

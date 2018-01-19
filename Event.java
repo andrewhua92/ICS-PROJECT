@@ -7,6 +7,7 @@ abstract class Event{
    private int eStatReq; // minimum num of the stat that needs to be met
    private int eChangeType; 
    private int eChangeAmount; 
+	private int month = -1; 
    public Event(String id, int statType, int statReq, int changeType, int changeAmount, EventPhase[] phases){
       // for simplicity sake only one stat req per event
       this.id = id; 
@@ -43,25 +44,56 @@ abstract class Event{
    public int getChangeAmount(){
       return eChangeAmount;
    }
+	
+	public int getMonthReq(){
+		return month; 
+	}
+	
+	public void setMonth(int i){
+		month = i;
+	}
    
    public void play(){
       Scanner sc = new Scanner(System.in); 
-      int playerChoice; 
+      int playerChoice;
+		boolean valid = false;
+      String flush; 
       for (int i = 0; i < ePhases.length; i++){
-         //System.out.println(ePhases[i]);
+         System.out.println("Event: " + id);
          ePhases[i].playPhase();
-         playerChoice = sc.nextInt(); 
-         while (!(makeDecision(playerChoice, i))){
-            System.out.println("Invalid decision. Please enter a valid number.");
-            playerChoice = sc.nextInt();
+			if (i != ePhases.length-1)
+			{
+         do
+         {
+            try{
+               playerChoice = sc.nextInt();
+					valid = makeDecision(playerChoice,i);
+               if (!valid || playerChoice <0)
+               {
+                  System.out.println("Incorrect input. Try again.");
+               }
+            }
+            catch (NumberFormatException nfx)
+            {
+               System.out.println("Incorrect input. Try again.");
+               flush = sc.next();
+               playerChoice = -1;
+            }
+            catch (InputMismatchException imx)
+            {
+               System.out.println("Incorrect input. Try again.");
+               flush = sc.next();
+               playerChoice = -1;
+            }
          }
-         makeDecision(playerChoice, i);
+         while (!valid || playerChoice <0 );
       }
+		}
    }
    
    private boolean makeDecision(int choiceMade, int phaseNum){
       if (choiceMade >= 0 && choiceMade <= ePhases[phaseNum].getNumChoices()){
-         ePhases[phaseNum + 1].appendText(ePhases[phaseNum].getChoiceChangeToStory(choiceMade));
+         ePhases[phaseNum].appendText(ePhases[phaseNum].getChoiceChangeToStory(choiceMade));
          return true;
       } 
       else if (choiceMade == 0){

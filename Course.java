@@ -281,38 +281,31 @@ public void setCourseLength(int length)
       }
    }
 
-   public int createEval(Player plyr)
+   public void createEval(Player plyr, int month)
    {
       if (boostStat.equals("logicalIntelligence"))
       {
-         numEval++;
-         list[numEval-1] = new LogicalIntelligenceEval((subject + " Test " + (numEval)),plyr);
+         list[month] = new LogicalIntelligenceEval((subject + " Test " + (month+1)),plyr);
       }	
       else if (boostStat.equals("spatialIntelligence"))
       {
-         numEval++;
-         list[numEval-1] = new SpatialIntelligenceEval((subject+ " Test " + (numEval)), plyr);
+         list[month] = new SpatialIntelligenceEval((subject+ " Test " + (month+1)), plyr);
       }
       else if (boostStat.equals("linguisticIntelligence"))
       {
-         numEval++;
-         list[numEval-1] = new LinguisticIntelligenceEval((subject+ " Test " + (numEval)), plyr);
+         list[month] = new LinguisticIntelligenceEval((subject+ " Test " + (month+1)), plyr);
       }
       else if (boostStat.equals("expressionCharisma"))
       {
-         numEval++;
-         list[numEval-1] = new ExpressionCharismaEval((subject+ " Test " + (numEval)), plyr);
+         list[month] = new ExpressionCharismaEval((subject+ " Test " + (month+1)), plyr);
       }
       else if (boostStat.equals("socialCharisma"))
       {
-         numEval++;
-         list[numEval-1] = new SocialCharismaEval((subject+ " Test " + (numEval)), plyr);
+         list[month] = new SocialCharismaEval((subject+ " Test " + (month+1)), plyr);
       }
       else if (boostStat.equals("strength"))
       {
-         numEval++;
-         list[numEval-1] = new StrengthEval((subject+ " Test " + (numEval)), plyr);
+         list[month] = new StrengthEval((subject+ " Test " + (month+1)), plyr);
       }
-      return numEval-1;
    }
 }

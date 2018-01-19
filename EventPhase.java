@@ -4,10 +4,10 @@ public class EventPhase {
 	private String phaseText; 
 	boolean proceed = false; 
 	
-	public EventPhase (Choice [] choices){
+	public EventPhase (String phaseText, Choice [] choices){
+		this.phaseText = phaseText;
 		numChoices = choices.length; 
 		EpChoices = new Choice[numChoices];
-		
 		for (int i = 0; i < numChoices; i++){
 			EpChoices[i] = choices[i]; 
 		}
