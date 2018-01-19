@@ -47,6 +47,7 @@ public class EventRunner{
 			String flush; //gets rid of empty lines in the file
 			 
 			numEndings = Integer.parseInt(in2.readLine()); 
+			
 			for(int i = 0; i < numEndings; i++){
 				title = in2.readLine();
 				luckReq = Integer.parseInt(in2.readLine());
@@ -71,20 +72,23 @@ public class EventRunner{
 			eventNum = Integer.parseInt(in.readLine()); // number of events
 			events = new Event[eventNum];
 			for (int i = 0; i < eventNum; i++){
-				eventType = Integer.parseInt(in.readLine()); //reads in type of event
-				id = in.readLine();                          //reads in the ID for the event
-				statReqType = Integer.parseInt(in.readLine()); //type of stat required
-				statReq = Integer.parseInt(in.readLine()); //minimum stat number that needs to be met
-				numPhases = Integer.parseInt(in.readLine()); //reads in number of phases in an event		
-				phases = new EventPhase [numPhases]; //creates array of phases
+				eventType = Integer.parseInt(in.readLine());	 		//reads in type of event
+				id = in.readLine();                          		//reads in the ID for the event
+				statReqType = Integer.parseInt(in.readLine());		 //type of stat required
+				statReq = Integer.parseInt(in.readLine());		 	//minimum stat number that needs to be met
+				numPhases = Integer.parseInt(in.readLine()); 		//reads in number of phases in an event		
+				phases = new EventPhase [numPhases]; 					//creates array of phases
 				phaseText = new String [numPhases];
+				
 				for (int j = 0; j < numPhases; j++){
 					phaseText[j] = in.readLine(); 	
 					numChoices = Integer.parseInt(in.readLine()); //reads in number of choices of a phase
-				    choices = new Choice [numChoices]; //creates array of choices for a phase
+				   choices = new Choice [numChoices]; //creates array of choices for a phase
 					
 					for (int k = 0; k < numChoices; k++){
-						choices[k] = new Choice(k + 1, in.readLine(), in.readLine());
+						String choiceText = in.readLine();
+						String changeToStoryText = in.readLine();
+						choices[k] = new Choice(k,choiceText, changeToStoryText);
 						//first reads in the text of the choice
 						//right below it should be its change to the story if you pick it 
 					}
@@ -92,6 +96,7 @@ public class EventRunner{
 				}
 				changeType = Integer.parseInt(in.readLine());
 				changeAmount = Integer.parseInt(in.readLine());
+				
 				if (eventType == 1){
 					events [i] = new Routine(id, statReqType, statReq, changeType, changeAmount, phases);
 				} else if (eventType == 2){ // recyclable 
@@ -107,16 +112,12 @@ public class EventRunner{
 		}
 	}
 	
-	public void updatePlayer(Player p){
-		player = p;
-	}
-	
 	private Event evaluateStatsForEvents(int eventType, int month){
-		boolean foundEvent = false;
 		Event pE = events[0]; // Potential event 
 		for (int h = 0; h < 2; h++){
-			for (int i = 0; !foundEvent && i < events.length; i++){ 
-				switch (events[i].getStatType()){
+			for (int i = 0; i < events.length; i++){ 
+				int statType = events[i].getStatType();
+				switch (statType){
 					case 0: 
 						 pE = events[i]; 
 						 break;
@@ -171,16 +172,15 @@ public class EventRunner{
 				
 				if (eventType == 1) {
 					if (pE instanceof Routine && !pE.getOccured()){
+						pE.setOccured(true);
 						return pE; 
 					}
 				} else if (eventType == 2){
-					if (pE instanceof Random){
-						return pE; 
-					}
+					return pE; 
 				} else if (eventType == 3){
 					if (pE instanceof Predetermined && !pE.getOccured()){
-						Predetermined temp = (Predetermined)pE; 
-						if (temp.getMonthReq() == month){
+						if (pE.getMonthReq() == month){
+							pE.setOccured(true);
 							return pE; 
 						}
 					}
@@ -268,4 +268,5 @@ public class EventRunner{
 		}
 	}
 }
+
 
