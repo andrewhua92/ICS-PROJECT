@@ -103,7 +103,7 @@ public class EventRunner{
 					events [i] = new Random(id, statReqType, statReq, changeType, changeAmount, phases);
 				} else if (eventType == 3){ //keeps track of time
 					int month = Integer.parseInt(in.readLine());
-					events [i] = new Predetermined(id, statReqType, statReq, changeType, changeAmount, month, phases);
+					events [i] = new Predetermined(id, statReqType, statReq, changeType, changeAmount, phases);
 					events[i].setMonth(month);
 				}
 				flush = in.readLine(); //gets rid of the empty space between events 
