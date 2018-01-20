@@ -1,3 +1,4 @@
+
 public class EventPhase {
 	private Choice [] EpChoices; 
 	private int numChoices;
@@ -39,6 +40,10 @@ public class EventPhase {
 	
 	public String getChoiceChangeToStory(int choiceNum){
 		return EpChoices[choiceNum].getChangeToStory();
+	}
+	
+	public void setChangeToStory(int choiceNum, String s){
+		EpChoices[choiceNum].setChangeToStory(s);
 	}
 	
 	public String toString(){
