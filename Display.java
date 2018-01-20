@@ -54,6 +54,10 @@ public class Display {
       {
          int counter = this.getMonth();
       //course selection after every term
+         if(counter%4 == 0 && counter!= 0){
+            System.out.println("Exams are coming up! The semester is almost over. Finally.");
+            System.out.println("");
+         }
          if(counter == 5) {
             System.out.println("First term already gone in a flash! Here's to seven more!");
             this.chooseCourses();
