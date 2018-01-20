@@ -49,7 +49,7 @@ public class EventRunner{
          String flush; //gets rid of empty lines in the file
       	 
          numEndings = Integer.parseInt(in2.readLine()); 
-      	
+      	 endings = new Ending[numEndings];
          for(int i = 0; i < numEndings; i++){
             title = in2.readLine();
             luckReq = Integer.parseInt(in2.readLine());
@@ -63,8 +63,8 @@ public class EventRunner{
                text+= in2.readLine() + "\n";
             }
             flush = in2.readLine();
-            endings = new Ending[numEndings];
             endings[i] = new Ending (title, luckReq, hapReq, stat1, req1, stat2, req2, text);
+	    text = "";
          }
       	
          EventPhase [] phases;
@@ -263,10 +263,12 @@ public class EventRunner{
    }
 	
    public void rollEnding(){
-      for (int i = 0; i < endings.length; i++){
+      boolean occurred = false;
+      for (int i = 0; i < endings.length && !occurred; i++){
          if (getAStat(endings[i].getStat1()) >= endings[i].getStat1Req() && getAStat(endings[i].getStat2()) >= endings[i].getStat2Req()){
             System.out.println("Ending: " + endings[i].getTitle());
             System.out.println(endings[i].getText());
+            occurred = true;
          }
       }
    }
