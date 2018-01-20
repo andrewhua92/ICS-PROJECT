@@ -1,8 +1,10 @@
 
+
 public class EventPhase {
 	private Choice [] EpChoices; 
 	private int numChoices;
 	private String phaseText; 
+	private String baseText; //added
 	boolean proceed = false; 
 	
 	public EventPhase (String phaseText, Choice [] choices){
@@ -12,6 +14,7 @@ public class EventPhase {
 		for (int i = 0; i < numChoices; i++){
 			EpChoices[i] = choices[i]; 
 		}
+		baseText = phaseText; 
 	}
 	
 	public void playPhase(){
@@ -44,6 +47,14 @@ public class EventPhase {
 	
 	public void setChangeToStory(int choiceNum, String s){
 		EpChoices[choiceNum].setChangeToStory(s);
+	}
+	
+	public String getBaseText(){
+		return baseText; 
+	}
+	
+	public void resetPhaseText(){ //added
+		phaseText = baseText; 
 	}
 	
 	public String toString(){
