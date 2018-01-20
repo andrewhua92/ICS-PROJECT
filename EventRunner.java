@@ -1,9 +1,11 @@
 import java.io.*;
+import java.util.*;
 public class EventRunner{
 	private Player player; 
 	private Event [] events; 
 	private Ending [] endings; 
 	int eventNum;  
+	private ArrayList <Integer> specialMonths = new ArrayList();
 	
 	/* Reference for ids of the stats
 	 * 0 - no stat req
@@ -41,7 +43,7 @@ public class EventRunner{
 			
 			String title;
 			int numEndings; 
-			int luckReq, hapReq, stat1, req1, stat2, req2, numLinesOfText;
+			int luckReq, hapReq, stat1, req1, stat2, req2;
 			String text = ""; 
 			
 			String flush; //gets rid of empty lines in the file
@@ -109,11 +111,66 @@ public class EventRunner{
 				flush = in.readLine(); //gets rid of the empty space between events 
 			}
 		} catch (IOException e){
-         System.out.println("Error in reading file.");
+			System.out.println("Error in reading file.");
+		}
+		findSpecialMonths(); //records all days where a specific event is supposed to happen
+	}
+	
+	public void sortEvents(){
+		/*
+		 * Sorts events by event type in order of value
+		 * 		Predetermined - 1
+		 * 		Routine - 2
+		 * 		Random - 3
+		 * 	-Not that these aren't the identifiers for event type but for the value of each event
+		 * 	-Random events have the highest value(sorted last in the array) because they are the only event type that can occur multiple times
+		 *	and so are sorted to the back of the array to decrease the likelihood of them occuring before other events are exhausted
+		 *  -The events of each individual stat TYPE (not value) are sorted from highest stat requirement to highest stat requirement
+		 *  	-All routine events will be run eventually and methods have already been set in place so that each predetermined event will
+		 *  	eventually be run (assuming there is only one predetermined event for each special month)
+		 *  	-Sorting by stat mainly makes sure the reusable Random events occur at a somewhat equal probability
+		 */
+		boolean sorted = true; 
+		for (int i = events.length - 1; i > 0 && !sorted; i--){
+			for (int j = 0; j < i; j++){ 
+				sorted = true; 
+				Event temp; 
+				if (events[j].getEventValue() > events[j+1].getEventValue()){
+					temp = events[j];
+					events[j] = events[j+1];
+					events[j+1] = temp;
+					sorted = false; 
+				} else if (events[j].getEventValue() == events[j+1].getEventValue()){
+					if (events[j].getStatReq() < events[j+1].getStatReq()){
+						temp = events[j]; 
+						events[j] = events[j+1]; 
+						events[j+1] = temp; 
+						sorted = false;
+					}
+				}
+			}
 		}
 	}
 	
+	private void findSpecialMonths(){ //records all months with a predetermined event
+		for (int i = 0; i < events.length; i++){
+			specialMonths.add(events[i].getMonthReq());
+		}
+	}
+	
+	private boolean checkIfSpecialMonth(int month){ //checks if a given month has a predetermined event
+		for (int i: specialMonths){
+			if (month == i){
+				return true;
+			}
+		}
+		return false;
+	}
+	
 	private Event evaluateStatsForEvents(int eventType, int month){
+		if (checkIfSpecialMonth(month)){ //if a predetermined event occurs in this month change to automatically search for that event
+			eventType = 3; 
+		}
 		Event pE = events[0]; // Potential event 
 		for (int h = 0; h < 2; h++){
 			for (int i = 0; i < events.length; i++){ 
@@ -269,5 +326,3 @@ public class EventRunner{
 		}
 	}
 }
-
-
