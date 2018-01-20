@@ -1,4 +1,9 @@
-1
+2
 Drama
-1
+Debate
+5
 Drama
+Debate
+Acting
+Film
+Ballet

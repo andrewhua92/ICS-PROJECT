@@ -133,7 +133,7 @@ public void setCourseLength(int length)
       Scanner sc = new Scanner(System.in);
    
    // Asks user to pick a class first based on stat
-      System.out.println("Please enter the number for the specific types of class for a stat:");
+      System.out.println("Types of Courses:");
       for (int i = 0; i < NUM_STATS; i++)
       {
          System.out.println((i+1)+ " " +selection[i]);
@@ -143,6 +143,7 @@ public void setCourseLength(int length)
       {
          try
          {
+            System.out.print("Please enter the number for the specific type of class for a stat: ");
             choose=sc.nextInt();
             if (!(choose >=1 && choose <=6))
             {
@@ -190,8 +191,10 @@ public void setCourseLength(int length)
          System.out.println("Error in reading file.");
       }
    
+      System.out.println("");
+      
    // Asks user to select which course they would like to pick
-      System.out.println("Please enter a number for the specific course accordingly:");
+      System.out.println("Available Courses for " + selection[choose-1] + ":");
    
       if (gradeLevel == 9 || gradeLevel == 10)
       {
@@ -213,10 +216,22 @@ public void setCourseLength(int length)
       {
          try
          {
+            System.out.print("Please enter a number for the specific course accordingly: ");
             course=sc.nextInt();
-            if (!(course >=1 && course <= 6 && course <= sr && course <= jr))
+            if (gradeLevel == 9 || gradeLevel == 10)
             {
-               System.out.println("Wrong input. Please enter the number again.");
+               if (!(course >=1 && course <= jr))
+               {
+                  System.out.println("Wrong input. Please enter the number again.");
+               
+               }
+            }
+            else
+            {
+               if (!(course >= 1 && course <= sr))
+               {
+                  System.out.println("Wrong input. Please enter the number again.");
+               }
             }
          }
          catch(InputMismatchException imx)
@@ -229,7 +244,7 @@ public void setCourseLength(int length)
             System.out.println("Wrong input. Try again.");
             flush = sc.next();
          }
-      }while(!(course >= 1 && course <= 6 && course <= sr && course <=jr));
+      }while(!(course >= 1 && course <= sr && gradeLevel > 10) && !(course >=1  && course <=jr && gradeLevel < 11));
    
    // Assigns this course object a name
       if (gradeLevel == 9 || gradeLevel == 10)
@@ -244,15 +259,19 @@ public void setCourseLength(int length)
    }
 
 //Calculates the current mark
-   private void calcAverage()
+   public void calcAverage()
    {
       double avg = 0;
-      for (int i =0 ; i < numEval; i++)
+      int counter = 0;
+      for (int i =0 ; i < MAX_EVAL; i++)
       {
-         avg+= list[i].getMark();
+         if (list[i] != null)
+         {
+            avg+= list[i].getMark();
+            counter++;
+         }      
       }
-      avg = avg/numEval;
-      currentMark = avg;
+      currentMark = avg/counter;
    }
 
 // Identifies this course with a specific stat 
@@ -307,5 +326,6 @@ public void setCourseLength(int length)
       {
          list[month] = new StrengthEval((subject+ " Test " + (month+1)), plyr);
       }
+      numEval++;
    }
 }

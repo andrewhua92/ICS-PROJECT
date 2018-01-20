@@ -259,7 +259,7 @@ public class Player {
       {
          stats.setHappiness(stats.getHappiness() + (int) sleep / 3);
       }
-      else
+      else if (sleep <=2)
       {	
          stats.setHappiness(stats.getHappiness() - 1);
       }
@@ -314,6 +314,7 @@ public class Player {
    public void doTest(int courseNum, int month) {
       schedule[courseNum].createEval(this, (month%5));
       schedule[courseNum].list[(month%5)].calculateMark();
+      schedule[courseNum].calcAverage();
    }
    
    // Method that initializes the courses and selects the courses
@@ -323,17 +324,19 @@ public class Player {
       {
          schedule[i] = new Course(grade);
          schedule[i].chooseCourse();
+         System.out.println("");
+         System.out.println("You have chosen : " + schedule[i].getSubject());
+         System.out.println("");
          for(int j = 0; j < i; j++)
          {
             if (schedule[i].getSubject().equals(schedule[j].getSubject()))
             {
                System.out.println("You already have selected this course. Try again.");
+               System.out.println("");
                schedule[i] = null;
                i--;
             }
          }
-         System.out.println("You have chosen : " + schedule[i].getSubject());
-         System.out.println("");
       }
    }
 }

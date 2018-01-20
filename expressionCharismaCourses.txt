@@ -1,9 +1,10 @@
 2
 Music
 Vocals
-4
+5
 Strings
 Band
 Vocals
 Keyboard
 Guitar
+Jazz

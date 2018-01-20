@@ -49,7 +49,7 @@ abstract class Evaluations
 	private int calcCharis()
 	{
 		int charis;
-		charis =(int)( Math.random() * 4 + 3);
+		charis =(int)( Math.random() * 10 + 5);
 		return charis;
 	}
 	
@@ -58,11 +58,11 @@ abstract class Evaluations
 	{
 		if (playerCharis > minCharisma)
 		{
-			mark = mark + (Math.random()*3);
+			mark = mark + (Math.random()*5);
 		}
 		else
 		{
-			mark = mark - (Math.random()*2);
+			mark = mark - (Math.random()*8);
 		}
 		return mark;
 	}
@@ -70,7 +70,6 @@ abstract class Evaluations
 	// calculates the boost for current luck
 	public double luckBoost(int playerLuck, double mark)
 	{
-		boolean check = false;
 		int luck = playerLuck;
 		int choose = (int) Math.random()*10;
 		if (luck > choose)
@@ -81,5 +80,5 @@ abstract class Evaluations
 	}
 	
 	// calculates independent mark
-	abstract double calculateMark();
+	abstract void calculateMark();
 }

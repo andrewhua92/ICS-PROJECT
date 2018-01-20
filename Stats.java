@@ -82,6 +82,10 @@ public class Stats {
 	
 	public void setHappiness (int happy) {
 		happiness = happy;
+      if (happiness > 10)
+      {
+         happiness = 10;
+      }
 	}
 	
 	public int getStrength () {
@@ -93,10 +97,11 @@ public class Stats {
 	}
 	//output string
 	public String toString(){
-		String str = "Total Intelligence: " + this.getTotalIntelligence();
+		String str = "Stats:";
+      str+= "\nTotal Intelligence: " + this.getTotalIntelligence();
 		str+= "\nLinguisticIntelligence: " + this.getLinguisticIntelligence();
 		str+= "\nSpatial Intelligence: " + this.getSpatialIntelligence() + "\nLogical Intelligence: " + this.getLogicalIntelligence();
-		str += "\nTotal Charisma: " + this.getTotalCharisma() + "\nExpression Charisma: " + this.getExpressionCharisma() + "\nSocial Charisma: " + this.getSocialCharisma();
+		str+= "\nTotal Charisma: " + this.getTotalCharisma() + "\nExpression Charisma: " + this.getExpressionCharisma() + "\nSocial Charisma: " + this.getSocialCharisma();
 		str+= "\nLuck: " + this.getLuck() + "\nHappiness: " + this.getHappiness() + "\nStrength: " + this.getStrength();
 		return str;
 	}
