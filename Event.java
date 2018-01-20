@@ -7,7 +7,8 @@ abstract class Event{
    private int eStatReq; // minimum num of the stat that needs to be met
    private int eChangeType; 
    private int eChangeAmount; 
-	private int month = -1; 
+   private int month = -1; 
+	
    public Event(String id, int statType, int statReq, int changeType, int changeAmount, EventPhase[] phases){
       // for simplicity sake only one stat req per event
       this.id = id; 
@@ -52,7 +53,18 @@ abstract class Event{
 	public void setMonth(int i){
 		month = i;
 	}
-   
+	
+	public int getEventValue(){
+		if (this instanceof Routine){
+			return 2; 
+		} else if (this instanceof Random){
+			return 3; 
+		} else if (this instanceof Predetermined){
+			return 1; 
+		}
+		return 0; 
+	}
+	
    public void play(){
       Scanner sc = new Scanner(System.in); 
       int playerChoice;
@@ -93,7 +105,8 @@ abstract class Event{
    
    private boolean makeDecision(int choiceMade, int phaseNum){
       if (choiceMade >= 0 && choiceMade <= ePhases[phaseNum].getNumChoices()){
-         ePhases[phaseNum].appendText(ePhases[phaseNum].getChoiceChangeToStory(choiceMade));
+    	 ePhases[phaseNum].appendText(ePhases[phaseNum].getChoiceChangeToStory(choiceMade));
+         ePhases[phaseNum].setChangeToStory(choiceMade, null);
          return true;
       } 
       else if (choiceMade == 0){
