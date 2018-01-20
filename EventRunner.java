@@ -152,6 +152,39 @@ public class EventRunner{
 		}
 	}
 	
+	private void shuffleMonths() {
+		int startOfRandom= 0;
+		boolean found = false;
+		
+		for (int i = 0; i < events.length && !found; i++){ 
+			//method is being called after sortEvents() so all type random events are at the end of the events array
+			if (events[i] instanceof Random) {
+				found = true;
+				startOfRandom = i;
+			}
+		}
+		
+		int numRandom = events.length - startOfRandom; 
+		Event [] storage = new Event[numRandom]; 
+		for (int i = startOfRandom; i < events.length; i++) {
+			storage[i-startOfRandom] = events[i]; 
+			//stores all the random events in an array to have their indexes randomized
+		}
+		int random;
+		Event temp;
+		for (int i = storage.length - 1; i > 0; i--) { //loops through entire array doing random switches
+			random = (int) (Math.random() * storage.length);
+			temp = storage[i];
+			storage[i] = storage[random];
+			storage[random] = temp; 
+		}
+		
+		for (int i = startOfRandom; i < events.length; i++) {
+			events[i] = storage[i - startOfRandom];
+			//rearranges the main array with the new indexes 
+		}
+	}
+	
 	private void findSpecialMonths(){ //records all months with a predetermined event
 		for (int i = 0; i < events.length; i++){
 			specialMonths.add(events[i].getMonthReq());
@@ -254,10 +287,11 @@ public class EventRunner{
 	
 	public void rollEvent(int month){
 		//updatePlayer(p); //updates player stats for any possible adjustments since last playing period
-      Event e;
+		Event e;
 		e = evaluateStatsForEvents((int)(Math.random()*3) + 1, month); 
 		e.play();
 		setAStat(e.getChangeType(), e.getChangeAmount());
+		shuffleMonths();
 	}
 	
 	public void rollEnding(){
