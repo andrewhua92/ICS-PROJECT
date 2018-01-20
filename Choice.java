@@ -1,5 +1,3 @@
-
-
 public class Choice {
 	private int id;
 	private String choiceText; //the text that actually makes up the choice
@@ -15,6 +13,10 @@ public class Choice {
 		return changeToStory; 
 	}
 	
+	public void setChangeToStory(String s){
+		changeToStory = s; 
+	}
+	
 	public String getChoiceText(){
 		return choiceText; 
 	}
@@ -23,3 +25,4 @@ public class Choice {
 		return choiceText; 
 	}
 }
+
