@@ -152,7 +152,7 @@ public class EventRunner{
 		}
 	}
 	
-	private void shuffleMonths() {
+	private void shuffleEvents() {
 		int startOfRandom= 0;
 		boolean found = false;
 		
@@ -291,7 +291,7 @@ public class EventRunner{
 		e = evaluateStatsForEvents((int)(Math.random()*3) + 1, month); 
 		e.play();
 		setAStat(e.getChangeType(), e.getChangeAmount());
-		shuffleMonths();
+		shuffleEvents();
 	}
 	
 	public void rollEnding(){
