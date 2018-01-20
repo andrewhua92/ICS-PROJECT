@@ -8,9 +8,9 @@ abstract class Event{
    private int eChangeType; 
    private int eChangeAmount; 
    private int month = -1; 
+   
 	
    public Event(String id, int statType, int statReq, int changeType, int changeAmount, EventPhase[] phases){
-      // for simplicity sake only one stat req per event
       this.id = id; 
       eStatType = statType; 
       eStatReq = statReq; 
@@ -68,7 +68,7 @@ abstract class Event{
    public void play(){
       Scanner sc = new Scanner(System.in); 
       int playerChoice;
-		boolean valid = false;
+      boolean valid = false;
       String flush; 
       for (int i = 0; i < ePhases.length; i++){
          System.out.println("Event: " + id);
@@ -76,37 +76,40 @@ abstract class Event{
 			if (i != ePhases.length-1)
 			{
          do
-         {
-            try{
-               playerChoice = sc.nextInt();
-					valid = makeDecision(playerChoice,i);
-               if (!valid || playerChoice <0)
-               {
-                  System.out.println("Incorrect input. Try again.");
-               }
-            }
-            catch (NumberFormatException nfx)
-            {
-               System.out.println("Incorrect input. Try again.");
-               flush = sc.next();
-               playerChoice = -1;
-            }
-            catch (InputMismatchException imx)
-            {
-               System.out.println("Incorrect input. Try again.");
-               flush = sc.next();
-               playerChoice = -1;
-            }
-         }
-         while (!valid || playerChoice <0 );
+	         {
+	            try{
+	               playerChoice = sc.nextInt();
+						valid = makeDecision(playerChoice,i);
+	               if (!valid || playerChoice <0)
+	               {
+	                  System.out.println("Incorrect input. Try again.");
+	               }
+	            }
+	            catch (NumberFormatException nfx)
+	            {
+	               System.out.println("Incorrect input. Try again.");
+	               flush = sc.next();
+	               playerChoice = -1;
+	            }
+	            catch (InputMismatchException imx)
+	            {
+	               System.out.println("Incorrect input. Try again.");
+	               flush = sc.next();
+	               playerChoice = -1;
+	            }
+	         }
+	         while (!valid || playerChoice <0 );
+	      }
       }
-		}
    }
    
    private boolean makeDecision(int choiceMade, int phaseNum){
       if (choiceMade >= 0 && choiceMade <= ePhases[phaseNum].getNumChoices()){
-    	 ePhases[phaseNum].appendText(ePhases[phaseNum].getChoiceChangeToStory(choiceMade));
-         ePhases[phaseNum].setChangeToStory(choiceMade, null);
+    	 if (ePhases[phaseNum + 1].getPhaseText().equals(ePhases[phaseNum + 1].getBaseText())){
+    		 ePhases[phaseNum + 1].resetPhaseText();
+    	 }
+    	 ePhases[phaseNum + 1].appendText(ePhases[phaseNum].getChoiceChangeToStory(choiceMade));
+    	 //ePhases[phaseNum].setChangeToStory(choiceMade, null);
          return true;
       } 
       else if (choiceMade == 0){
@@ -116,5 +119,4 @@ abstract class Event{
          return false;
       }
    }
-   
 }
