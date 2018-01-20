@@ -9,8 +9,8 @@ abstract class Event{
    private int eChangeAmount; 
    private int month = -1; 
    
-	
    public Event(String id, int statType, int statReq, int changeType, int changeAmount, EventPhase[] phases){
+      // for simplicity sake only one stat req per event
       this.id = id; 
       eStatType = statType; 
       eStatReq = statReq; 
@@ -46,25 +46,25 @@ abstract class Event{
       return eChangeAmount;
    }
 	
-	public int getMonthReq(){
-		return month; 
-	}
+   public int getMonthReq(){
+      return month; 
+   }
 	
-	public void setMonth(int i){
-		month = i;
-	}
-	
-	public int getEventValue(){
-		if (this instanceof Routine){
-			return 2; 
-		} else if (this instanceof Random){
-			return 3; 
-		} else if (this instanceof Predetermined){
-			return 1; 
-		}
-		return 0; 
-	}
-	
+   public void setMonth(int i){
+      month = i;
+   }
+   
+   public int getEventValue(){
+      if (this instanceof Routine){
+         return 2; 
+      } else if (this instanceof Random){
+         return 3; 
+      } else if (this instanceof Predetermined){
+         return 1; 
+      }
+      return 0; 
+   }
+   
    public void play(){
       Scanner sc = new Scanner(System.in); 
       int playerChoice;
@@ -73,43 +73,45 @@ abstract class Event{
       for (int i = 0; i < ePhases.length; i++){
          System.out.println("Event: " + id);
          ePhases[i].playPhase();
-			if (i != ePhases.length-1)
-			{
-         do
-	         {
-	            try{
-	               playerChoice = sc.nextInt();
-						valid = makeDecision(playerChoice,i);
-	               if (!valid || playerChoice <0)
-	               {
-	                  System.out.println("Incorrect input. Try again.");
-	               }
-	            }
-	            catch (NumberFormatException nfx)
-	            {
-	               System.out.println("Incorrect input. Try again.");
-	               flush = sc.next();
-	               playerChoice = -1;
-	            }
-	            catch (InputMismatchException imx)
-	            {
-	               System.out.println("Incorrect input. Try again.");
-	               flush = sc.next();
-	               playerChoice = -1;
-	            }
-	         }
-	         while (!valid || playerChoice <0 );
-	      }
+         if (i != ePhases.length-1)
+         {
+            do
+            {
+               try{
+                  System.out.print("Choice #: ");
+                  playerChoice = sc.nextInt();
+                  valid = makeDecision(playerChoice,i);
+                  if (!valid || playerChoice <0 || playerChoice > 1)
+                  {
+                     System.out.println("Incorrect input. Try again.");
+                  }
+               }
+               catch (NumberFormatException nfx)
+               {
+                  System.out.println("Incorrect input. Try again.");
+                  flush = sc.next();
+                  playerChoice = -1;
+               }
+               catch (InputMismatchException imx)
+               {
+                  System.out.println("Incorrect input. Try again.");
+                  flush = sc.next();
+                  playerChoice = -1;
+               }
+            }
+            while (!valid || playerChoice <0 || playerChoice > 1);
+         }
+         System.out.println("");
       }
    }
    
    private boolean makeDecision(int choiceMade, int phaseNum){
       if (choiceMade >= 0 && choiceMade <= ePhases[phaseNum].getNumChoices()){
-    	 if (ePhases[phaseNum + 1].getPhaseText().equals(ePhases[phaseNum + 1].getBaseText())){
-    		 ePhases[phaseNum + 1].resetPhaseText();
-    	 }
-    	 ePhases[phaseNum + 1].appendText(ePhases[phaseNum].getChoiceChangeToStory(choiceMade));
-    	 //ePhases[phaseNum].setChangeToStory(choiceMade, null);
+         if (ePhases[phaseNum + 1].getPhaseText().equals(ePhases[phaseNum + 1].getBaseText())){
+            ePhases[phaseNum + 1].resetPhaseText();
+         }
+         ePhases[phaseNum + 1].appendText(ePhases[phaseNum].getChoiceChangeToStory(choiceMade));
+       //ePhases[phaseNum].setChangeToStory(choiceMade, null);
          return true;
       } 
       else if (choiceMade == 0){
@@ -120,3 +122,4 @@ abstract class Event{
       }
    }
 }
+   
