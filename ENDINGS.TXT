@@ -21,17 +21,6 @@ Highschool's over. You've won the national championship. Many scouts have seen y
 You have entered the draft for 2020. You're predicted to be the next Michael Jordan. 
 With all the attention and skill, you've entered an organization and have begun training for your future. 
 
-Dropout
-8
-2
-0
-0
-0
-0
-You messed around for all four years of highschool. You didn't have the marks to succeed, so you dropped out.
-Your parents are annoyed at you and despise the fact that you were born, they disown you. This sends a feeling of misery down your spine.
-Now homeless without a career you spend the rest of your days on the streets of Toronto begging for money.
-
 Criminal
 7
 3
@@ -54,14 +43,14 @@ You have always loved video games and you're also very good at it. You decide to
 Your parents are outraged by this fact and remove you from the house. You find someother young and upcoming content creators to live with.
 You guys work together and create some amazing content. As one of the new up and coming live streamers, you have a bright future.
 
-Mcdonalds
+Mcdonald's
 9
 5
 1
 5
 2
 5
-Highschool has ended and you have decided to join the workforce. Unfortunately only one location wanted to hire you... Mcdoanld's.
+Highschool has ended and you have decided to join the workforce. Unfortunately only one location wanted to hire you... Mcdonald's.
 With no other choice, you reluctantly take the job. With your new task of flipping patties every day, your brain slowly deteriorates.
 Every night you go home full of regret and cry. You live the rest of your years in misery and die an early death.
 
@@ -108,3 +97,14 @@ Hollywood
 You loved acting class in highshool and you continue your love for acting in film school.
 You travel to the Hollywood to begin your journey to get noticed by the hotshots of the industry. Your time in the limelight begins.
 After you direct 3 live performances, a small indie director notices you and gives you a chance to direct a small movie called "Guardians of the Galaxy III: Revenge of Thanos".
+
+Dropout
+8
+2
+0
+0
+0
+0
+You messed around for all four years of highschool. You didn't have the marks to succeed, so you dropped out.
+Your parents are annoyed at you and despise the fact that you were born, they disown you. This sends a feeling of misery down your spine.
+Now homeless without a career you spend the rest of your days on the streets of Toronto begging for money.

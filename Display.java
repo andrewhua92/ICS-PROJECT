@@ -1,23 +1,24 @@
 import java.util.*;
 import java.io.*;
 
-public class Display {
+public class Display {     // The class which controls the gameplay 
    Scanner sc = new Scanner(System.in);
-   private Player character;
-   private EventRunner events;
-   final int COURSES = 4;
-   private int month = 0;
-   private int num;
-   private String gend;
-   private String name;
-   private String input;
-   private Type type = new Type();
+   private Player character;     // Player object, which stores all the information for the role playing game of the user 
+   private EventRunner events;   // EventRunner object, object which will handle the events portion of the game
+   final int COURSES = 4;        // Constant representing the number of courses the user will have per semester
+   private int month = 0;        // Variable which represents time that has passed in-game (5 months / semester, 2 semesters / year, 4 years/ game)
+   private int num;              // Variable used for input for character creation
+   private String gend;          // Variable used for storing user input for their gender (open-ended)
+   private String name;          // Variable used for storing user input for their name (opend-ended)
+   private String input;         // Variable used for implementing a 'store'
+   private Type type = new Type();  // Type object, object which stores the possible sets of intitial stats 
 
 //accessor and mutator for months
    public int getMonth(){
       return month; 
    }
 
+//adds onto the month variable when called
    public void addMonth(){
       month = month+1;
    }
@@ -27,6 +28,8 @@ public class Display {
       System.out.println("Welcome to AYJ Simulator!");
       this.characterCreation();
    //gives exposition and tips for playing game
+   //stats in this game will act as a function of how well they do on tests and as well as a requirement for certain events and endings
+   //events are random occurrences which will add that flavour to the game, and serve to increase or decrease stats 
       System.out.println("You will be playing through various situations, selecting courses at the beginning of every year.");
       System.out.println("Every month, you will select how much sleep, entertainment, and studying you will do.");
       System.out.println("You will also have a chance of encountering random events that can affect your stats.");
@@ -43,7 +46,7 @@ public class Display {
    //creates player object where all of the information of the player is stored
       character = new Player (type.choose(num), type, gend, name, true, month);
    //events folder is loaded
-      events = new EventRunner(character, "Events.txt" , "Endings.txt" );
+      events = new EventRunner(character, "EVENTS.txt" , "ENDINGS.txt" );
    //character's grade is set to 9
       character.setGrade(9); 
    //asks users to pick their courses
@@ -54,10 +57,11 @@ public class Display {
       {
          int counter = this.getMonth();
       //course selection after every term
-         if(counter%4 == 0 && counter!= 0){
+         if(((counter+1)%5) == 0 && counter!= 0){
             System.out.println("Exams are coming up! The semester is almost over. Finally.");
             System.out.println("");
          }
+            
          if(counter == 5) {
             System.out.println("First term already gone in a flash! Here's to seven more!");
             this.chooseCourses();
@@ -74,6 +78,8 @@ public class Display {
             System.out.println("Last semester! Make it count - the end is near.");
             this.chooseCourses();
          }
+         
+         
       //graduates to next grade, new events and classes to take
          if(counter == 10) {
             character.setGrade(10);
@@ -90,7 +96,7 @@ public class Display {
             System.out.println("Final year! Just ten short months before you enter the real world.");
             this.chooseCourses();
          }
-            //player chooses how to allocate time
+      //player chooses how to allocate time
          System.out.println("Another month, another round of decisions. Pick how you would like to allocate your time this month.");
          character.spendTime();
       //initializes event per month
@@ -117,6 +123,7 @@ public class Display {
             System.out.println("");
             System.out.println(character.stats);
             System.out.println("");
+         //prints out all of their test scores based on their stats during that month
             for (int i = 0; i< COURSES ; i++)
             {
                System.out.printf("Marks this month for %s is : %.2f%% \n", character.schedule[i].list[((counter)%5)].getName(), character.schedule[i].list[((counter)%5)].getMark());
@@ -125,6 +132,7 @@ public class Display {
             System.out.println("");
          }
          this.addMonth();
+         
       //Gives the player a pause
          System.out.println("The end of another month... (Press enter to continue)");
          input = sc.nextLine();
@@ -137,7 +145,6 @@ public class Display {
 //called from start game, sets gender and character type
    public void characterCreation()
    {
-      String input;
       String flush;
       boolean valid = false;
    //Sets name and gender
@@ -238,15 +245,21 @@ public class Display {
       System.out.println("");
    }
 
+//called when player chooses courses
+//uses player, as that is where courses is stored, and the selection is independent and unique to each course object
    public void chooseCourses(){
       character.courseSelection();
    }
 //initialized once sufficient time has passed
 
-//TODO: Finish ending
+//method called when the 40 months have elapsed
+//calls the endings method in EventRunner which checks for the most suitable ending based on stats
    public void startEnding(){
       events.rollEnding();
       
       System.out.println("The End. Thanks for playing the AYJ Simulator!");
+      System.out.println("Here are your final stats.");
+      System.out.println("");
+      System.out.println(character.stats);
    }
 }

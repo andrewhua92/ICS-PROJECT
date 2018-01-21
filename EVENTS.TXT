@@ -2,7 +2,7 @@
 2
 Bully
 6
-3
+2
 4
 You are walking back to class from lunch, as you approach the class a bully stands in your way.
 2
@@ -74,7 +74,7 @@ The scouts have witnessed your abillity, your chances of going pro have increase
 3
 Meeting Hollywood Director
 6
-9
+2
 3
 You're walking around downtown as you see a man with many bodyguards around him.
 2
@@ -125,7 +125,7 @@ What kind of teacher makes you write a report about at trip? You get scolded for
 3
 Prom
 7
-5
+2
 3
 Tonight's the night, the night of your highschool prom. This where all the magic happens and your highschool dreams come true.
 2
@@ -148,7 +148,7 @@ You end up sleeping very late and wake up the next day with a crazy headache.
 1
 Mcdonald's
 7
-5
+2
 3
 You suddenly feel the need to eat. There is a McDonald's across the street. You enter the McDonald's and the cashier says "What would you like?"
 2
@@ -192,7 +192,7 @@ It's been a long day and you decide to go to sleep, you have developed insomnia 
 1
 Visiting the therapist
 7
-7
+2
 3
 School is tough, very tough. You go home everyday wondering why you want to live. Today you decide to vist a therapist.
 2
@@ -256,7 +256,7 @@ A lifeguard comes and saves you and brings you to the park's infirmary. Your fri
 3
 Contemplating life
 7
-9
+2
 10
 Your life sucks, you hate school, you hate yourself, you just want to die.
 1
@@ -303,7 +303,7 @@ Your mom comes in and stops you before you can end your life...
 2
 Meteor Crash
 6
-8
+2
 3
 You're walking home from school as you see a meteor fly down and land in your neighbourhood.
 2
@@ -413,7 +413,7 @@ You get back to bed and after a long, long, long sleep you wake up and feel heal
 2
 Winning the Lottery
 6
-9
+2
 3
 You buy a lottery ticket and bring it home.
 2
@@ -485,7 +485,7 @@ You arrange a time for a date and you feel this warm fuzzy feeling inside. You f
 2
 Cancer
 6
-9
+2
 4
 You're just heading to your next class, when you feel your pocket vibrating. As you pull your phone out of your pocket, the display shows the the caller as your mother.
 2

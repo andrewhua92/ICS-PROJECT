@@ -1,6 +1,4 @@
-
-
-public class Ending{
+public class Ending{   
 	private String title;
 	private int luckReq;
 	private int happinessReq;

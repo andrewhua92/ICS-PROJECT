@@ -15,11 +15,11 @@ public class ExpressionCharismaEval extends Evaluations
 		{
 			if (control < 7)
 			{
-				mark = 60;
+				mark = 50;
 			}
 			else 
 			{
-				mark = 80;
+				mark = 75;
             if (control > 15 && control < 30)
             {
                mark = mark + (control - 15) * 1;
@@ -34,11 +34,11 @@ public class ExpressionCharismaEval extends Evaluations
 		{
 			if (control < 15)
 			{
-				mark = 60;
+				mark = 50;
 			} 
 			else
 			{
-				mark = 80;
+				mark = 70;
             if (control > 30 && control < 50)
             {
             mark = mark + (control - 30) * 1;
