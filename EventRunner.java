@@ -1,6 +1,9 @@
 import java.io.*;
 import java.util.*;
 
+import java.io.*;
+import java.util.*;
+
 public class EventRunner{
    private Player player; 
    private Event [] events; 
@@ -131,7 +134,7 @@ public class EventRunner{
    	 *  	eventually be run (assuming there is only one predetermined event for each special month)
    	 *  	-Sorting by stat mainly makes sure the reusable Random events occur at a somewhat equal probability
    	 */
-      boolean sorted = true; 
+      boolean sorted = false; 
       for (int i = events.length - 1; i > 0 && !sorted; i--){
          for (int j = 0; j < i; j++){ 
             sorted = true; 
@@ -172,10 +175,12 @@ public class EventRunner{
       if (checkIfSpecialMonth(month)){ //if a predetermined event occurs in this month change to automatically search for that event
          eventType = 3; 
       }
+      
       Event pE = events[0]; // Potential event 
       for (int h = 0; h < 2; h++){
          for (int i = 0; i < events.length; i++){ 
             int statType = events[i].getStatType();
+            
             switch (statType){
                case 0: 
                   pE = events[i]; 
@@ -235,7 +240,9 @@ public class EventRunner{
                   return pE; 
                }
             } else if (eventType == 2){
-               return pE; 
+            	if (pE instanceof Random) {
+            		return pE;
+            	}
             } else if (eventType == 3){
                if (pE instanceof Predetermined && !pE.getOccured()){
                   if (pE.getMonthReq() == month){
@@ -243,12 +250,11 @@ public class EventRunner{
                      return pE; 
                   }
                }
-            } else {
-               return null;
             }
-            eventType = 2; // if an event of type 1 or 3 was needed but all have occured,
-         // sets the search parameter to type 2 which are the recyclable events
-         } // end of for loop			
+            	// if an event of type 1 or 3 was needed but all have occured,
+            	// sets the search parameter to type 2 which are the recyclable events
+         } 		// end of for loop			
+         eventType = 2; 
       }
       return null;
    }	
