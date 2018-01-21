@@ -127,7 +127,6 @@ public class Display {
          this.addMonth();
       //Gives the player a pause
          System.out.println("The end of another month... (Press enter to continue)");
-         sc.nextLine();
          input = sc.nextLine();
          System.out.println("");
       }
