@@ -149,7 +149,7 @@ public class Player {
       
          do {
             try {
-               System.out.println("How much time do you want to spend studying? Hours left: " + timeLeft + " Hours.");
+               System.out.printf("How much time do you want to spend studying? Hours left: %.2f Hours.\n", timeLeft);
                time = input.nextDouble();
                if (!timeChecker(time,timeLeft))
                {
@@ -175,7 +175,7 @@ public class Player {
          {
             do
             {
-               System.out.println("How much time do you want to spend with each course? Hours left to study: " + time + " Hours.");
+               System.out.printf("How much time do you want to spend with each course? Hours left to study: %.2f Hours.\n", time);
                System.out.print(schedule[i].getSubject() + ": ");
                try{
                   hours[i] = input.nextDouble();
@@ -203,7 +203,7 @@ public class Player {
       
       // subtract time used for study
       
-         System.out.println("You are given 6 hours of sleep, plus " + timeLeft + " hours left over.");
+         System.out.printf("You are given 6 hours of sleep, plus %.2f hours left over.", timeLeft);
          System.out.println("");
       
          boolean correct= false;
