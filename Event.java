@@ -103,6 +103,10 @@ abstract class Event{
          }
          System.out.println("");
       }
+      System.out.println("Event over. Press enter to continue.");
+      System.out.println("");
+      sc.nextLine();
+      sc.nextLine();
    }
    
    private boolean makeDecision(int choiceMade, int phaseNum){
