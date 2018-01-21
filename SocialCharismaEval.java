@@ -15,11 +15,11 @@ public class SocialCharismaEval extends Evaluations
 		{
 			if (control < 7)
 			{
-				mark = 50;
+				mark = 65;
 			}
 			else 
 			{
-				mark = 75;
+				mark = 85;
             if (control > 15 && control < 30)
             {
                mark = mark + (control - 15) * 1;
@@ -34,11 +34,11 @@ public class SocialCharismaEval extends Evaluations
 		{
 			if (control < 15)
 			{
-				mark = 50;
+				mark = 60;
 			} 
 			else
 			{
-				mark = 70;
+				mark = 75;
             if (control > 30 && control < 50)
             {
             mark = mark + (control - 30) * 1;
