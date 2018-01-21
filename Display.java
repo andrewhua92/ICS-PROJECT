@@ -230,6 +230,8 @@ public class Display {
       }
       while(!(num >= 1 && num <=5));
       
+      sc.nextLine();
+      
       System.out.println("");
       
       System.out.println("You have chosen : " + (type.getNames()[num-1]));
