@@ -22,6 +22,7 @@ abstract class Event{
       }
    } 
    
+//Accessors and mutators
    public int getStatType(){
       return eStatType; 
    }
