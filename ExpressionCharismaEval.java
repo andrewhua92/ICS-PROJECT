@@ -4,7 +4,8 @@ public class ExpressionCharismaEval extends Evaluations
 	{
 		super(name,plyr);
 	}
-	
+	// Calculates mark for expression charisma courses
+	// Uses the expression charisma stat
 	public void calculateMark()
 	{
 		double mark = 0;
@@ -20,6 +21,8 @@ public class ExpressionCharismaEval extends Evaluations
 			else 
 			{
 				mark = 75;
+				// Measures to make sure that if the player has an excessively high stat
+				// They cannot simply just get 100
             if (control > 15 && control < 30)
             {
                mark = mark + (control - 15) * 1;
@@ -49,14 +52,15 @@ public class ExpressionCharismaEval extends Evaluations
             }
 			}	
 		}
+		// Uses the boost functions of Evaluations to modify the mark
 		mark = super.teacherBoost(super.user.stats.getSocialCharisma(),mark);
 		mark = super.luckBoost(super.user.stats.getLuck(), mark);
-      
+      // Ensures no mark over 100
       if (mark > 100)
       {
          mark = 100;
       }
-      
+      // Punishes players for being unhappy
       if (hapCap <= 1)
       {
          mark-=30;
