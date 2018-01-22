@@ -26,7 +26,8 @@ public class EventRunner{
 	 * 2 - Random event (reusable)
 	 * 3 - Predetermined event (tracks time)
 	 */
-	 
+
+//Constructor
    public EventRunner(Player p, String eventFile, String endingsFile){
       try {
          player = p;
