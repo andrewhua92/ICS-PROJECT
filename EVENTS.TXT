@@ -465,7 +465,7 @@ Open the door and go talk to them.
 They freeze in their spot and look at you as you run towards them to talk. 
 Don't do anything and keep staring. 
 They notice you creepily staring at them and come to your window. 
-Them says, "Hey, I saw you looking at my dog, do you like dogs too?" 
+They say, "Hey, I saw you looking at my dog, do you like dogs too?" 
 2
 "Yes, I love them. They are my favourite animal." 
 You say, "I love dogs and taking care of them, just like how I will take care of you." 
