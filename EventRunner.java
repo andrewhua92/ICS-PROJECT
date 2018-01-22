@@ -17,7 +17,7 @@ public class EventRunner{
 	 * 5 - social charisma 
 	 * 6 - luck
  	 * 7 - happiness
-	 *	8 - strength
+	 * 8 - strength
 	 */
 	 
 	 
@@ -31,13 +31,13 @@ public class EventRunner{
       try {
          player = p;
       	
-         BufferedReader in = new BufferedReader(new FileReader(eventFile)); //reads in event information
-         BufferedReader in2 = new BufferedReader(new FileReader(endingsFile)); //reads in endings information 
+         BufferedReader in = new BufferedReader(new FileReader(eventFile)); 		//reads in event information
+         BufferedReader in2 = new BufferedReader(new FileReader(endingsFile)); 		//reads in endings information 
          int eventType; 
          int numPhases; 
          int numChoices; 
-         int statReqType; //type of stat required
-         int statReq; //minimum of that stat needed
+         int statReqType; 	//type of stat required
+         int statReq; 		//minimum of that stat needed
          String id; 
          int changeType; 
          int changeAmount; 
@@ -51,7 +51,7 @@ public class EventRunner{
       	 
          numEndings = Integer.parseInt(in2.readLine()); 
       	 endings = new Ending[numEndings];
-         for(int i = 0; i < numEndings; i++){
+         for(int i = 0; i < numEndings; i++){				//reads in all the endings in the text file 
             title = in2.readLine();
             luckReq = Integer.parseInt(in2.readLine());
             hapReq = Integer.parseInt(in2.readLine());
@@ -76,17 +76,17 @@ public class EventRunner{
          events = new Event[eventNum];
          for (int i = 0; i < eventNum; i++){
             eventType = Integer.parseInt(in.readLine());	 		//reads in type of event
-            id = in.readLine();                          		//reads in the ID for the event
-            statReqType = Integer.parseInt(in.readLine());		 //type of stat required
-            statReq = Integer.parseInt(in.readLine());		 	//minimum stat number that needs to be met
-            numPhases = Integer.parseInt(in.readLine()); 		//reads in number of phases in an event		
-            phases = new EventPhase [numPhases]; 					//creates array of phases
+            id = in.readLine();                          			//reads in the ID for the event
+            statReqType = Integer.parseInt(in.readLine());		 	//type of stat required
+            statReq = Integer.parseInt(in.readLine());		 		//minimum stat number that needs to be met
+            numPhases = Integer.parseInt(in.readLine()); 			//reads in number of phases in an event		
+            phases = new EventPhase [numPhases]; 				//creates array of phases
             phaseText = new String [numPhases];
          	
             for (int j = 0; j < numPhases; j++){
                phaseText[j] = in.readLine(); 	
-               numChoices = Integer.parseInt(in.readLine()); //reads in number of choices of a phase
-               choices = new Choice [numChoices]; //creates array of choices for a phase
+               numChoices = Integer.parseInt(in.readLine()); 	//reads in number of choices of a phase
+               choices = new Choice [numChoices]; 		//creates array of choices for a phase
             	
                for (int k = 0; k < numChoices; k++){
                   String choiceText = in.readLine();
@@ -97,8 +97,8 @@ public class EventRunner{
                }
                phases[j] = new EventPhase(phaseText[j], choices); 
             }
-            changeType = Integer.parseInt(in.readLine());
-            changeAmount = Integer.parseInt(in.readLine());
+            changeType = Integer.parseInt(in.readLine());		//type of stat to be changed
+            changeAmount = Integer.parseInt(in.readLine());		//amount it is changed by
          	
             if (eventType == 1){
                events [i] = new Routine(id, statReqType, statReq, changeType, changeAmount, phases);
@@ -114,8 +114,8 @@ public class EventRunner{
       } catch (IOException e){
          System.out.println("Error in reading file.");
       }
-      findSpecialMonths();
-      sortEvents();
+      findSpecialMonths();	// finds months with a predetermined event
+      sortEvents();		// sorts the events array
    }
 	
    public void sortEvents(){
@@ -133,7 +133,7 @@ public class EventRunner{
    	 *  	-Sorting by stat mainly makes sure the reusable Random events occur at a somewhat equal probability
    	 */
       boolean sorted = false; 
-      for (int i = events.length - 1; i > 0 && !sorted; i--){
+      for (int i = events.length - 1; i > 0 && !sorted; i--){		//bubble sort
          for (int j = 0; j < i; j++){ 
             sorted = true; 
             Event temp; 
@@ -179,7 +179,7 @@ public class EventRunner{
          for (int i = 0; i < events.length; i++){ 
             int statType = events[i].getStatType();
             
-            switch (statType){
+            switch (statType){			// checks if the player's stat meets the requirement
                case 0: 
                   pE = events[i]; 
                   break;
@@ -233,8 +233,8 @@ public class EventRunner{
             } 
          	
             if (eventType == 1) {
-               if (pE instanceof Routine && !pE.getOccured()){
-                  pE.setOccured(true);
+               if (pE instanceof Routine && !pE.getOccured()){	
+                  pE.setOccured(true);			
                   return pE; 
                }
             } else if (eventType == 2){
@@ -249,8 +249,8 @@ public class EventRunner{
                   }
                }
             }
-            	// if an event of type 1 or 3 was needed but all have occured,
-            	// sets the search parameter to type 2 which are the recyclable events
+            		// if an event of type 1 or 3 was needed but all have occured,
+            		// sets the search parameter to type 2 which are the recyclable events
          } 		// end of for loop			
          eventType = 2; 
       }
@@ -266,7 +266,7 @@ public class EventRunner{
       shuffleEvents();
    }
 	
-   public void rollEnding(){
+   public void rollEnding(){		//causes the appropriate ending to play, called at end of game
       boolean occurred = false;
       for (int i = 0; i < endings.length && !occurred; i++){
          if (getAStat(endings[i].getStat1()) >= endings[i].getStat1Req() && getAStat(endings[i].getStat2()) >= endings[i].getStat2Req()){
@@ -279,7 +279,7 @@ public class EventRunner{
    
    
 	
-   public int getAStat(int statType){
+   public int getAStat(int statType){		// general accessor for a player's stat, implemented so stats can be identified by an integer
       switch (statType){ 
          case 0: 
             return 0;				
@@ -303,7 +303,7 @@ public class EventRunner{
       return -1; 
    }
 	
-   public void setAStat(int statType, int addBy){
+   public void setAStat(int statType, int addBy){	// general mutator for a player's stat, implemented so stats can be identified by an int
       switch (statType){ 
          case 0: 
             break;				
@@ -335,7 +335,7 @@ public class EventRunner{
    }
 
 
-   private void shuffleEvents() {
+   private void shuffleEvents() {		//shuffles the recyclable events to avoid repetitions in recyclable events
       int startOfRandom= 0;
       boolean found = false;
    	
