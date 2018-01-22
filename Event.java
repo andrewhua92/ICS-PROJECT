@@ -70,7 +70,7 @@ abstract class Event{
    
    public void play(){
 	   /*
-	    *
+	    * Plays through a given event manages the appropriate decision making and text displaying methods of each phase in the event
 	    */
       Scanner sc = new Scanner(System.in); 
       int playerChoice;
