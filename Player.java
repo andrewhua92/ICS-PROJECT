@@ -6,20 +6,15 @@ public class Player {
    private int grade;		// Grade of player
    Stats stats;			// Storage of the stats for player
    private Type type;		// Type of player (class)	
-   private String gender;	// Gender of player
-   private String name;		// Name of player
    private final int COURSES = 4;	// Constant for number of courses 
    Course[] schedule = new Course[COURSES];	// Storage for the courses the player has for the current semester
    Study allocatedStudy;		// Object which handles efficacy of time studied
    private int month;			// Current Time
 
 	// Constructor
-   public Player(Stats stats, Type type, String gender, String name, boolean sufficientSleep, int month) {
+   public Player(Stats stats, Type type, int month) {
       this.stats = stats;
       this.type = type;
-      this.gender = gender;
-      this.name = name;
-      this.sufficientSleep = sufficientSleep;
       this.schedule = schedule;
       this.month = month;
    }
