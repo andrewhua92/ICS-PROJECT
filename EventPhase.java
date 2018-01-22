@@ -23,9 +23,9 @@ public class EventPhase {
       System.out.println();
    }
 		
-   public void appendText(int choiceNum){
+   /*public void appendText(int choiceNum){
       phaseText = EpChoices[choiceNum].getChangeToStory() + phaseText; 
-   }
+   }*/
 	
    public int getNumChoices(){
       return EpChoices.length; 
