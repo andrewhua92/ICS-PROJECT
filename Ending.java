@@ -8,6 +8,7 @@ public class Ending{
 	private int stat2Req;  
 	private String endingText; 
 	
+	//Constructor
 	public Ending(String title, int lReq, int hReq, int statType1, int stat1Req, int statType2, int stat2Req, String text){
 		this.title = title; 
 		luckReq = lReq;
@@ -19,6 +20,7 @@ public class Ending{
 		endingText = text;   
 	}
 	
+	//Accessors and mutators
 	public int getLuckReq(){
 		return luckReq;
 	}
