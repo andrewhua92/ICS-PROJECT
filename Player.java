@@ -28,14 +28,6 @@ public class Player {
       return type;
    }
 
-   public String getGender() {
-      return gender;
-   }
-
-   public String getName() {
-      return name;
-   }
-
    public Course[] getSchedule() {
       return schedule;
    }
@@ -59,14 +51,6 @@ public class Player {
 
    public void setType(Type type) {
       this.type = type;
-   }
-
-   public void setGender(String gender) {
-      this.gender = gender;
-   }
-
-   public void setName(String name) {
-      this.name = name;
    }
 
    public void setSchedule(Course[] schedule) {
