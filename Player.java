@@ -3,16 +3,15 @@ import java.util.*;
 public class Player {
 	// Fields
    Scanner input = new Scanner(System.in);
-   private int grade;
-   Stats stats;
-   private Type type;
-   private String gender;
-   private String name;
-   private boolean sufficientSleep;
-   private final int COURSES = 4;
-   Course[] schedule = new Course[COURSES];
-   Study allocatedStudy;
-   private int month;
+   private int grade;		// Grade of player
+   Stats stats;			// Storage of the stats for player
+   private Type type;		// Type of player (class)	
+   private String gender;	// Gender of player
+   private String name;		// Name of player
+   private final int COURSES = 4;	// Constant for number of courses 
+   Course[] schedule = new Course[COURSES];	// Storage for the courses the player has for the current semester
+   Study allocatedStudy;		// Object which handles efficacy of time studied
+   private int month;			// Current Time
 
 	// Constructor
    public Player(Stats stats, Type type, String gender, String name, boolean sufficientSleep, int month) {
@@ -40,10 +39,6 @@ public class Player {
 
    public String getName() {
       return name;
-   }
-
-   public boolean getSufficientSleep() {
-      return sufficientSleep;
    }
 
    public Course[] getSchedule() {
@@ -77,10 +72,6 @@ public class Player {
 
    public void setName(String name) {
       this.name = name;
-   }
-
-   public void setSufficientSleep(boolean sufficientSleep) {
-      this.sufficientSleep = sufficientSleep;
    }
 
    public void setSchedule(Course[] schedule) {
@@ -118,13 +109,18 @@ public class Player {
       double studyTime;
       double timeLeft = 12.0;
 		boolean reset = true;
+	   
+	   // Reset is here to indicate whether the player has confirmed their choice for allocation of time
+	   // Reset is changed at end of decision tree
+	   
+	   // Asks user for time they want to spend socializing
       while (reset) {
          System.out.println("How would you like to spend your time after school from 3pm? (12 hours)");
-      // makes sure under time limit
          do{
             try {
                System.out.println("How much time do you want to spend socializing/having fun?");
                time = input.nextDouble();
+		// Checks if time input is valid
                if (!timeChecker(time,timeLeft))
                {
                   System.out.print("Invalid time. Try again. ");
@@ -143,10 +139,11 @@ public class Player {
          }
             while(!timeChecker(time,timeLeft));
          
-      // subtract time used for social
+      // subtract time used for social & stores it
          socialTime = time;
          timeLeft -= time;
       
+	      // Asks user for time spent on studying initially
          do {
             try {
                System.out.printf("How much time do you want to spend studying? Hours left: %.2f Hours.\n", timeLeft);
@@ -170,6 +167,9 @@ public class Player {
             while (!timeChecker(time, timeLeft));
          timeLeft-=time;
             
+	      // Array to store the amount of hours they will spend studying per subject
+	      // Asks user how much time they'd like to study per subject
+	      // time is variable which is local only to this for loop
          double hours[] = new double [schedule.length];
          for (int i =0 ; i<schedule.length;i++)
          {
@@ -199,15 +199,15 @@ public class Player {
             }
             while (!timeChecker(hours[i], time));
             time-=hours[i];
-         }
-      
-      // subtract time used for study
+	 }   
       
          System.out.printf("You are given 6 hours of sleep, plus %.2f hours left over.", timeLeft);
          System.out.println("");
       
          boolean correct= false;
          int choose;
+	      // Asks user if they'd like to save
+	      // If no, reset is false and the entire loop is gone through again
          while (!correct) 
          {
             System.out.println("Would you like to save these settings? (1 for yes, 2 for no)");
@@ -267,6 +267,7 @@ public class Player {
 
 	// Gets time for study and converts it into stats
    public void study(double[] time) {
+	   // Converts each of the times into a stat boost, based on the hours put into the specific class studied for
       for (int i = 0; i < schedule.length; i++) {
          allocatedStudy = new Study(time[i]);
          allocatedStudy.effectiveCalculator(allocatedStudy.getHoursStudy(), allocatedStudy.getEffectiveHours(), true,
