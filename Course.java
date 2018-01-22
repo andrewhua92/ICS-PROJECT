@@ -164,6 +164,7 @@ public class Course
          {
             choices[1][i] = in.readLine();
          }
+	 in.close();
       }
       catch(IOException iox)
       {
