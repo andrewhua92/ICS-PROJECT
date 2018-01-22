@@ -4,23 +4,23 @@ import java.util.*;
 public class Course
 {
 // Variables
-   private double currentMark = 100;
-   private int courseMissed = 0;
-//private int courseLength;
-   protected static int gradeLevel;
-   private String subject;
-   private int numEval = 0;
-   private final int MAX_EVAL = 5;
-   Evaluations[] list = new Evaluations[MAX_EVAL];
-   private double PASS = 50;
-   private final int NUM_STATS = 6;
-   private final int LEVELS = 2;
+   private double currentMark = 100; // Curent mark in the course
+   protected static int gradeLevel; // Current grade level of the course
+   private String subject;		// Name of the subject
+   private int numEval = 0;		// Number of evaluations performed
+   private final int MAX_EVAL = 5;	// Maximum number of evaluations (equal to max months in a semester)
+   Evaluations[] list = new Evaluations[MAX_EVAL];	// Creation of the evaluations array
+   private final int NUM_STATS = 6;			// Number of stats
+   private final int LEVELS = 2;			// Refers to junior and senior divisions of grades
    
-   private String boostStat;
+   private String boostStat;	// Stat associated with the course
 
-   String[] selection = new String[NUM_STATS];
+   String[] selection = new String[NUM_STATS]; 	// Storage for the stats
+	
+	// Storage for the files for the different courses
+	// Works in paralell with selection []
    String[] fileSelect ={"logicalIntelligenceCourses.txt","spatialIntelligenceCourses.txt","linguisticIntelligenceCourses.txt","expressionCharismaCourses.txt","socialCharismaCourses.txt","strengthCourses.txt"};
-   String[][] choices = new String[LEVELS][];
+   String[][] choices = new String[LEVELS][]; // Storage for the courses of that type, in both divisions 
 
 // Constructors
    public Course (int grdLvl)
@@ -62,17 +62,6 @@ public class Course
       courseMissed = num;
    }
 
-/*
-public int getCourseLength()
-{
-   return courseLength;
-} 
-
-public void setCourseLength(int length)
-{
-   courseLength = length;
-} */
-
    public int getGradeLevel()
    {
       return gradeLevel;
@@ -111,16 +100,6 @@ public void setCourseLength(int length)
    public void setBoostStat(String stat)
    {
       boostStat = stat;
-   }
-
-	// Methiod to check if this player is passing course
-   public boolean pass ()
-   {
-      if (currentMark >= PASS)
-      {
-         return true;
-      }	
-      return false;
    }
 
 // Process to allow user to pick course
@@ -300,6 +279,7 @@ public void setCourseLength(int length)
       }
    }
 
+	// Creates an evaluation based on the current stat of the associated course and the month (test 1 for month 1, etc)
    public void createEval(Player plyr, int month)
    {
       if (boostStat.equals("logicalIntelligence"))
