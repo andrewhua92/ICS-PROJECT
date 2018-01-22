@@ -52,16 +52,6 @@ public class Course
       currentMark = mark;
    }
 
-   public int getCourseMissed()
-   {
-      return courseMissed;
-   }
-
-   public void setCourseMissed(int num)
-   {
-      courseMissed = num;
-   }
-
    public int getGradeLevel()
    {
       return gradeLevel;
