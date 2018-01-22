@@ -32,7 +32,7 @@ public class Display {
 		System.out.println("Welcome to AYJ Simulator!");
 		System.out.println("You've just graduated high school overseas, but your family decides that a change of scenery is best for them.");
 		System.out.println("With that, they've decided they wanted to come to Canada.");
-		System.out.println("It's a new year for you, and you've just enrolled as a freshman in A.Y Jackson Secondary school, eager for the new future that awaits you...")
+		System.out.println("It's a new year for you, and you've just enrolled as a freshman in A.Y Jackson Secondary school, eager for the new future that awaits you...");
 		this.characterCreation();
 		// gives exposition and tips for playing game
 		if(checkFile()==false) {
@@ -59,7 +59,7 @@ public class Display {
 		// creates player object where all of the information of the player is stored
 		character = new Player(type.choose(num), type, month);
 		// events folder is loaded
-		events = new EventRunner(character, "Events.txt", "ending.txt");
+		events = new EventRunner(character, "EVENTS.txt", "ENDINGS.txt");
 		// character's grade is set to 9
 		character.setGrade(9);
 		// asks users to pick their courses
