@@ -4,7 +4,8 @@ public class EventPhase {
    private String phaseText; 
    private String baseText;
    boolean proceed = false; 
-	
+
+//Constructor
    public EventPhase (String phaseText, Choice [] choices){
       this.phaseText = phaseText;
       numChoices = choices.length; 
@@ -14,7 +15,7 @@ public class EventPhase {
       }
       baseText = phaseText;
    }
-	
+//Displays phase text and choices
    public void playPhase(){
       System.out.println(phaseText);
       for (int i = 0; i < numChoices; i++){
