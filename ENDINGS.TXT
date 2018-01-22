@@ -1,9 +1,9 @@
 10
 College
 7
-7
+35
 1
-10
+50
 5
 10
 Highschool's over and your future has been decided. You're going to college. Not a good one, but not a bad one either.
@@ -12,9 +12,9 @@ You're going to miss all your friends that are going to university. You have dec
 
 Athlete
 8
-7
+70
 8
-15
+150
 5
 10
 Highschool's over. You've won the national championship. Many scouts have seen your abilities.
@@ -23,9 +23,9 @@ With all the attention and skill, you've entered an organization and have begun 
 
 Criminal
 7
-3
-1
 15
+1
+75
 8
 15
 You have always been a rebel, but now you've crossed the line. You hacked into your school system and changed your marks.
@@ -34,9 +34,9 @@ You live a life of danger always being chased down by the CIA. Your life has cha
 
 Live Streamer
 7
+35
 5
-5
-15
+75
 4
 10
 You have always loved video games and you're also very good at it. You decide to become a live streamer instead of pursuing higher learning.
@@ -45,9 +45,9 @@ You guys work together and create some amazing content. As one of the new up and
 
 Mcdonald's
 9
-5
+25
 1
-5
+25
 2
 5
 Highschool has ended and you have decided to join the workforce. Unfortunately only one location wanted to hire you... Mcdonald's.
@@ -56,9 +56,9 @@ Every night you go home full of regret and cry. You live the rest of your years 
 
 eSport Player
 8
-7
+70
 2
-12
+120
 2
 12
 Highschool's over and it's time to decide what school you want to go to. When you enter one they decided to add you to their eSports team.
@@ -67,9 +67,9 @@ Now you are finally able to use your strengths to the fullest. Take advantage of
 
 University
 5
-5
+50
 1
-20
+180
 3
 20
 Highschool's over and you have graduated at the top of your class. With plenty of offers from universities, you plan and get ready to move in.
@@ -78,9 +78,9 @@ By the end of all that you will become a doctor, lawyer or engineer, with plenty
 
 Artist
 7
-7
+70
 1
-7
+70
 2
 8
 You finished highschool with high artistic ablities, with your pieces praised both by friends and family.
@@ -89,9 +89,9 @@ You begin drawing and painting as well as sculpting with her to begin your own a
 
 Hollywood
 1
-8
+80
 5
-8
+80
 1
 8
 You loved acting class in highshool and you continue your love for acting in film school.
@@ -100,7 +100,7 @@ After you direct 3 live performances, a small indie director notices you and giv
 
 Dropout
 8
-2
+10
 0
 0
 0
