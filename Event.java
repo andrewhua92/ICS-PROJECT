@@ -22,7 +22,6 @@ abstract class Event{
       }
    } 
    
-//Accessors and mutators
    public int getStatType(){
       return eStatType; 
    }
@@ -56,9 +55,9 @@ abstract class Event{
    }
    
    public int getEventValue(){
-	   /*Returns the priority of each event type when being sorted
-	    *Larger the number, the further back in the events array in eventRunner the event is sorted
-	    */
+      /*Returns the priority of each event type when being sorted
+       *Larger the number, the further back in the events array in eventRunner the event is sorted
+       */
       if (this instanceof Routine){
          return 2; 
       } else if (this instanceof Random){
@@ -70,9 +69,9 @@ abstract class Event{
    }
    
    public void play(){
-	   /*
-	    * Plays through a given event manages the appropriate decision making and text displaying methods of each phase in the event
-	    */
+      /*
+       * Plays through a given event manages the appropriate decision making and text displaying methods of each phase in the event
+       */
       Scanner sc = new Scanner(System.in); 
       int playerChoice;
       boolean valid = false;
@@ -122,7 +121,6 @@ abstract class Event{
             ePhases[phaseNum + 1].resetPhaseText();							// resets the text of any changes so a given decision's impact on the story will make sense
          }
          ePhases[phaseNum + 1].appendText(ePhases[phaseNum].getChoiceChangeToStory(choiceMade));	// changes the story based off of the choice made
-       //ePhases[phaseNum].setChangeToStory(choiceMade, null);
          return true;
       }
       else {		// if an invalid choice was entered, indicate that a decision wasn't made

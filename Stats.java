@@ -1,5 +1,6 @@
 
 public class Stats {
+   // Object which stores all of the individual stats of a player
 	private int linguisticIntelligence;
 	private int spatialIntelligence;
 	private int logicalIntelligence;

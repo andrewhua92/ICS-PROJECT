@@ -1,5 +1,9 @@
 abstract class Evaluations
 {
+   // This class is responsible for simulating the marks for a player
+   // Has children who are evaluations for specific stats
+   // They are evaluted a little bit differently from each other and use the corresponding stat to calculate the mark 
+   // Variables
 	private String name;
 	private int minCharisma;
 	private double mark;

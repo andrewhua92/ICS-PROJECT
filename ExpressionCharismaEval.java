@@ -1,6 +1,5 @@
 public class ExpressionCharismaEval extends Evaluations
 {
-//Contructor
 	public ExpressionCharismaEval(String name, Player plyr)
 	{
 		super(name,plyr);

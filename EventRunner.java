@@ -26,8 +26,7 @@ public class EventRunner{
 	 * 2 - Random event (reusable)
 	 * 3 - Predetermined event (tracks time)
 	 */
-
-//Constructor
+	 
    public EventRunner(Player p, String eventFile, String endingsFile){
       try {
          player = p;
@@ -51,7 +50,7 @@ public class EventRunner{
          String flush; //gets rid of empty lines in the file
       	 
          numEndings = Integer.parseInt(in2.readLine()); 
-      	 endings = new Ending[numEndings];
+         endings = new Ending[numEndings];
          for(int i = 0; i < numEndings; i++){				//reads in all the endings in the text file 
             title = in2.readLine();
             luckReq = Integer.parseInt(in2.readLine());
@@ -66,7 +65,7 @@ public class EventRunner{
             }
             flush = in2.readLine();
             endings[i] = new Ending (title, luckReq, hapReq, stat1, req1, stat2, req2, text);
-	    text = "";
+            text = "";
          }
       	
          EventPhase [] phases;
@@ -231,6 +230,8 @@ public class EventRunner{
                      pE = events[i]; 
                   }
                   break; 
+               default:
+                  break;
             } 
          	
             if (eventType == 1) {
@@ -239,9 +240,9 @@ public class EventRunner{
                   return pE; 
                }
             } else if (eventType == 2){
-            	if (pE instanceof Random) {
-            		return pE;
-            	}
+               if (pE instanceof Random) {
+                  return pE;
+               }
             } else if (eventType == 3){
                if (pE instanceof Predetermined && !pE.getOccured()){
                   if (pE.getMonthReq() == month){
@@ -259,7 +260,6 @@ public class EventRunner{
    }	
 	
    public void rollEvent(int month){
-   	//updatePlayer(p); //updates player stats for any possible adjustments since last playing period
       Event e;
       e = evaluateStatsForEvents((int)(Math.random()*3) + 1, month); 
       e.play();
@@ -300,6 +300,8 @@ public class EventRunner{
             return player.getStats().getHappiness();
          case 8: 
             return player.getStats().getStrength();
+         default:
+            break;
       }
       return -1; 
    }

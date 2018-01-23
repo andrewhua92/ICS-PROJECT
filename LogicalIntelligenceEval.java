@@ -1,6 +1,5 @@
 public class LogicalIntelligenceEval extends Evaluations
 {
-	//Constructor
 	public LogicalIntelligenceEval(String name, Player plyr)
 	{
 		super(name,plyr);

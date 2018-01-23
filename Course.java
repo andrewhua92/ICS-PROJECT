@@ -4,7 +4,7 @@ import java.util.*;
 public class Course
 {
 // Variables
-   private double currentMark = 100; // Curent mark in the course
+   private double currentMark = 0; // Curent mark in the course
    protected static int gradeLevel; // Current grade level of the course
    private String subject;		// Name of the subject
    private int numEval = 0;		// Number of evaluations performed
@@ -231,17 +231,16 @@ public class Course
 //Calculates the current mark
    public void calcAverage()
    {
-      double avg = 0;
-      int counter = 0;
-      for (int i =0 ; i < MAX_EVAL; i++)
+      double avg = currentMark;
+      double recent = 0;
+      for (int i = 0; i < MAX_EVAL; i++)
       {
          if (list[i] != null)
          {
-            avg+= list[i].getMark();
-            counter++;
-         }      
+            recent = list[i].getMark();
+         }
       }
-      currentMark = avg/counter;
+      currentMark = (currentMark*(numEval-1) + recent)/numEval;
    }
 
 // Identifies this course with a specific stat 

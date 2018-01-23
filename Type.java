@@ -1,12 +1,34 @@
 import java.io.*;  
 	
 public class Type{
+   // Class which holds essentially the possible starting stats for the player
    private Stats[] stats;
    private String[] names;
    private int[] id;
-	
-//Constructor
-   public Type(){  
+   
+   // Accesors and mutators
+   public Stats[] getStats(){
+      return stats;
+   }	
+   public void setStats(Stats[] stats1){
+      stats=stats1;
+   }
+   public String[] getNames(){
+      return names;
+   }
+   public void setNames(String[] names1){
+      names=names1;
+   }
+   public int[] getId(){
+      return id;
+   }
+   public void setId(int[] ids){
+      id=ids;
+   }
+   
+   // Constructor
+   public Type(){
+      
       try{
          BufferedReader in=new BufferedReader(new FileReader("Type.txt"));
          stats=new Stats[Integer.parseInt(in.readLine())];
@@ -25,26 +47,8 @@ public class Type{
       }
             
    }
-//accessors and mutators
-   public Stats[] getStats(){
-      return stats;
-   }
-   public void setStats(Stats[] stats1){
-      stats=stats1;
-   }
-   public String[] getNames(){
-      return names;
-   }
-   public void setNames(String[] names1){
-      names=names1;
-   }
-   public int[] getId(){
-      return id;
-   }
-   public void setId(int[] ids){
-      id=ids;
-   }
-     
+    
+    // Selection of the specific type  
    public Stats choose(int identity) {
       return stats[identity-1];
    }

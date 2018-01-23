@@ -1,6 +1,5 @@
 public class LinguisticIntelligenceEval extends Evaluations
 {
-	//Contructor
 	public LinguisticIntelligenceEval(String name, Player plyr)
 	{
 		super(name,plyr);
