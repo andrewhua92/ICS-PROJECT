@@ -1,0 +1,16 @@
+As part of our ICS4U summative, we created a type of 'choose your own adventure' sort of game using Java played through the console or terminal. 
+The objective was to create a project that would utilize a database of sorts to put our abilities of object oriented programming to the test.
+The game is dubbed 'AYJ Simulator' as it takes place as a student at the high school establishment of A.Y. Jackson Secondary School, which
+would let the player play as if they were a freshman student and pick their courses and fiddle around with time management. 
+
+The game in itself takes inspiration from popular vintage 'Choose Your Own Adventure' games like Oregon Trail and modern visual novels to drive
+the story line and game decision making.
+However, due to time constraints, at the time of creating this game, the complexity was stunted to a basic level.
+
+The game should be able to be run from 'GameRunner.java', which also provides instructions on how to play.
+Typically, all that is needed are the files, for them to be compiled, and then typing and occasional clicking are required to play the game.
+The goal of the game in the end is to finish 'high school' with a high score and ideal ending, where studying and making yourself happy to
+cultivate high grades will let you have higher points. Along with this, there are also monthly events which can vary the story and are randomized.
+
+The database of the system is how the test scores, courses, and events are stored, in which they are placed in a system akin to a database for
+simple retrieval and utilization.
